@@ -14,6 +14,14 @@ public class HomeScreen implements ActionListener{
 	JScrollPane testScroll = new JScrollPane(testArea);
 	SuperSocketMaster ssm = null;
 	
+	/*
+	public void playernetworkconnection(){
+		String strIPaddress = "127.0.0.1";
+		
+		ssm = new SuperSocketMaster(strIPaddress, 6112, this);
+	}
+	*/
+	
 	// Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == hostButton){
