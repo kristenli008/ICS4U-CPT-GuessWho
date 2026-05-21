@@ -1,17 +1,20 @@
-import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 
 public class GamePlayScreen{
-	SuperSocketMaster ssm = null;
+	// properties
+	JPanel GamePlayPanel = new JPanel();
 	
-	public HashTable gameplay(HashTable<JFrame, SuperSocketMaster> tablepass){
-		ssm = new SuperSocketMaster(1234,this);
-		ssm.connect();
+	// methods
+	public void gameplay(){
 		
-		return tablepass;
+		
 	}
 	
-	public static void main(String[] args){
+	// constructor
+	public GamePlayScreen(){
 		
 	}
 }
