@@ -65,8 +65,8 @@ public class HomeScreen implements ActionListener{
 		testField.addActionListener(this);
 		homePanel.add(testField);
 		
-		testArea.setBounds(650, 500, 330, 100);
-		homePanel.add(testArea);
+		testScroll.setBounds(650, 500, 330, 100);
+		homePanel.add(testScroll);
 		
 		IPLabel.setBounds(300, 200, 330, 100);
 		homePanel.add(IPLabel);
