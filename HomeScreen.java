@@ -17,8 +17,6 @@ public class HomeScreen implements ActionListener{
 	JLabel Area = new JLabel("AREA");
 	SuperSocketMaster ssm = null;
 	
-	
-	
 	// Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == hostButton){
@@ -88,5 +86,7 @@ public class HomeScreen implements ActionListener{
 	public static void main(String[] args){
 		new HomeScreen();
 	}
+	
+	
 	
 }
