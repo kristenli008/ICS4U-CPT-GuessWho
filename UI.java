@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.awt.image.*;
 
 public class UI implements ActionListener{
 	// Properties
@@ -9,7 +10,7 @@ public class UI implements ActionListener{
 	//JPanels
 	JPanel homePanel = new JPanel();
 	JPanel characterPanel = new JPanel();
-	JPanel gameplayPanel = new JPanel();
+	JGamePlay gameplayPanel = new JGamePlay();
 	
 	// JButtons
 	JButton hostButton = new JButton("HOST");
@@ -24,9 +25,14 @@ public class UI implements ActionListener{
 	JLabel Send = new JLabel("SEND");
 	JLabel Area = new JLabel("AREA");
 	SuperSocketMaster ssm = null;
-		
+	
+	//images
+	BufferedImage riceshower = DatabaseAccess.imageloading("rice shower");
 	
 	// Methods
+	
+	
+	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == hostButton){
 			ssm = new SuperSocketMaster(1234,this);
@@ -38,6 +44,7 @@ public class UI implements ActionListener{
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
 			
 			theFrame.setContentPane(characterPanel);
+			theFrame.pack();
 
 		}else if(evt.getSource() == joinButton){
 			
@@ -56,6 +63,7 @@ public class UI implements ActionListener{
 			testLabel.setText(strLine + "\n");
 		}else if(evt.getSource() == selectcharButton){
 			theFrame.setContentPane(gameplayPanel);
+			theFrame.pack();
 		}
 	}
 	
@@ -99,9 +107,9 @@ public class UI implements ActionListener{
 		characterPanel.setPreferredSize(new Dimension(1280,720));
 		
 		selectcharButton.setBounds(100,100,500,50);
-		characterPanel.add(selectcharButton);
 		selectcharButton.addActionListener(this);
-		
+		characterPanel.add(selectcharButton);
+			
 		
 		// gameplayPanel
 		gameplayPanel.setLayout(null);
