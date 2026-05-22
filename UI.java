@@ -6,9 +6,17 @@ import javax.swing.event.*;
 public class UI implements ActionListener{
 	// Properties
 	JFrame theFrame = new JFrame("Guess Who");
+	//JPanels
 	JPanel homePanel = new JPanel();
+	JPanel characterPanel = new JPanel();
+	JPanel gameplayPanel = new JPanel();
+	
+	// JButtons
 	JButton hostButton = new JButton("HOST");
 	JButton joinButton = new JButton("JOIN");
+	JButton selectcharButton = new JButton("SELECT");
+	JButton returnButton = new JButton("RETURN");
+	
 	JTextField testField = new JTextField();
 	JLabel testLabel = new JLabel("");
 	//JScrollPane testScroll = new JScrollPane(testArea);
@@ -16,7 +24,7 @@ public class UI implements ActionListener{
 	JLabel Send = new JLabel("SEND");
 	JLabel Area = new JLabel("AREA");
 	SuperSocketMaster ssm = null;
-	
+		
 	
 	// Methods
 	public void actionPerformed(ActionEvent evt){
@@ -29,6 +37,8 @@ public class UI implements ActionListener{
 			// Maybe print to screen or give random code for users to join
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
 			
+			theFrame.setContentPane(characterPanel);
+
 		}else if(evt.getSource() == joinButton){
 			
 			// Just testing for now
@@ -36,17 +46,22 @@ public class UI implements ActionListener{
 			ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 			ssm.connect();
 			System.out.println("Input the host's ip or hostname");
+			
+			theFrame.setContentPane(characterPanel);
 		}else if(evt.getSource() == testField){
 			ssm.sendText(testField.getText());
 			testField.setText("");
 		}else if(evt.getSource() == ssm){
 			String strLine = ssm.readText();
 			testLabel.setText(strLine + "\n");
+		}else if(evt.getSource() == selectcharButton){
+			theFrame.setContentPane(gameplayPanel);
 		}
 	}
 	
 	// Constructor
 	public UI(){
+		// homePanel
 		homePanel.setLayout(null);
 		homePanel.setPreferredSize(new Dimension(1280,720));
 		theFrame.setContentPane(homePanel);
@@ -79,6 +94,21 @@ public class UI implements ActionListener{
 		Area.setBounds(500, 500, 100, 100);
 		homePanel.add(Area);
 		
+		// characterPanel
+		characterPanel.setLayout(null);
+		characterPanel.setPreferredSize(new Dimension(1280,720));
+		
+		selectcharButton.setBounds(100,100,500,50);
+		characterPanel.add(selectcharButton);
+		selectcharButton.addActionListener(this);
+		
+		
+		// gameplayPanel
+		gameplayPanel.setLayout(null);
+		gameplayPanel.setPreferredSize(new Dimension(1280,720));
+		
+		
+		// JFrame
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
 		theFrame.pack();
