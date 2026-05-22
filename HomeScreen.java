@@ -10,12 +10,13 @@ public class HomeScreen implements ActionListener{
 	JButton hostButton = new JButton("HOST");
 	JButton joinButton = new JButton("JOIN");
 	JTextField testField = new JTextField();
-	JTextArea testArea = new JTextArea();
-	JScrollPane testScroll = new JScrollPane(testArea);
+	JLabel testLabel = new JLabel("");
+	//JScrollPane testScroll = new JScrollPane(testArea);
 	JLabel IPLabel = new JLabel("IP: ");
 	JLabel Send = new JLabel("SEND");
 	JLabel Area = new JLabel("AREA");
 	SuperSocketMaster ssm = null;
+	
 	
 	// Methods
 	public void actionPerformed(ActionEvent evt){
@@ -40,7 +41,7 @@ public class HomeScreen implements ActionListener{
 			testField.setText("");
 		}else if(evt.getSource() == ssm){
 			String strLine = ssm.readText();
-			testArea.append(strLine + "\n");
+			testLabel.setText(strLine + "\n");
 		}
 	}
 	
@@ -63,8 +64,11 @@ public class HomeScreen implements ActionListener{
 		testField.addActionListener(this);
 		homePanel.add(testField);
 		
-		testScroll.setBounds(650, 500, 330, 100);
-		homePanel.add(testScroll);
+		testLabel.setBounds(650,500,330,100);
+		homePanel.add(testLabel);
+		
+		//testScroll.setBounds(650, 500, 330, 100);
+		//homePanel.add(testScroll);
 		
 		IPLabel.setBounds(300, 200, 330, 100);
 		homePanel.add(IPLabel);
