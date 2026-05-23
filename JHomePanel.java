@@ -9,7 +9,8 @@ public class JHomePanel extends JPanel{
 	
 	//Methods
 	public void paintComponent(Graphics g){
-		
+		super.paintComponent(g);
+		g.drawImage(DatabaseAccess.imageloading("homescreen"),0,0,null);
 	}
 	
 	//Constructor
