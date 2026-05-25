@@ -87,9 +87,13 @@ public class UI implements ActionListener{
 		//	theFrame.pack();
 
 		}else if(evt.getSource() == joinButton){
+			String strIPJoin = null;
+			while(strIPJoin == null){
+				// Just testing for now
+				strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
+				//strIPJoin = JOptionPane.showInputDialog(theFrame, "Invalid! Enter the host's IP", "INVALID & REJOIN", JOptionPane.PLAIN_MESSAGE);
+			}
 			
-			// Just testing for now
-			String strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
 			ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 			ssm.connect();
 			System.out.println("Input the host's ip or hostname");
@@ -139,6 +143,7 @@ public class UI implements ActionListener{
 				CellC6.setBounds(intCellMarginX+515,intCellMarginY+310,103,155);		
 				CellC7.setBounds(intCellMarginX+618,intCellMarginY+310,103,155);		
 				CellC8.setBounds(intCellMarginX+721,intCellMarginY+310,103,155);
+				
 				gameplayPanel.add(CellA1);
 				gameplayPanel.add(CellA2);
 				gameplayPanel.add(CellA3);
@@ -163,6 +168,7 @@ public class UI implements ActionListener{
 				gameplayPanel.add(CellC6);
 				gameplayPanel.add(CellC7);
 				gameplayPanel.add(CellC8);
+				
 				Gameplay = true;
 			}else if(evt.getSource() == CellA1){
 				gameplayPanel.umarow = 0;
@@ -548,32 +554,36 @@ public class UI implements ActionListener{
 		CellC8.setBounds(intCellMarginX+721,intCellMarginY+310,103,155);
 		
 		//BUTTON VISIBILITY 
-		CellA1.setBorderPainted(false);
-		CellA2.setBorderPainted(false);
-		CellA3.setBorderPainted(false);
-		CellA4.setBorderPainted(false);
-		CellA5.setBorderPainted(false);
-		CellA6.setBorderPainted(false);
-		CellA7.setBorderPainted(false);
-		CellA8.setBorderPainted(false);
-		CellB1.setBorderPainted(false);
-		CellB2.setBorderPainted(false);
-		CellB3.setBorderPainted(false);
-		CellB4.setBorderPainted(false);
-		CellB5.setBorderPainted(false);
-		CellB6.setBorderPainted(false);
-		CellB7.setBorderPainted(false);
-		CellB8.setBorderPainted(false);
-		CellC1.setBorderPainted(false);
-		CellC2.setBorderPainted(false);
-		CellC3.setBorderPainted(false);
-		CellC4.setBorderPainted(false);
-		CellC5.setBorderPainted(false);
-		CellC6.setBorderPainted(false);
-		CellC7.setBorderPainted(false);
-		CellC8.setBorderPainted(false);
-		SelectionConfirm.setBorderPainted(false);
+		CellA1.setVisible(false);
+		CellA2.setVisible(false);
+		CellA3.setVisible(false);
+		CellA4.setVisible(false);
+		CellA5.setVisible(false);
+		CellA6.setVisible(false);
+		CellA7.setVisible(false);
+		CellA8.setVisible(false);
+		CellB1.setVisible(false);
+		CellB2.setVisible(false);
+		CellB3.setVisible(false);
+		CellB4.setVisible(false);
+		CellB5.setVisible(false);
+		CellB6.setVisible(false);
+		CellB7.setVisible(false);
+		CellB8.setVisible(false);
+		CellC1.setVisible(false);
+		CellC2.setVisible(false);
+		CellC3.setVisible(false);
+		CellC4.setVisible(false);
+		CellC5.setVisible(false);
+		CellC6.setVisible(false);
+		CellC7.setVisible(false);
+		CellC8.setVisible(false);
+		SelectionConfirm.setVisible(false);
+		hostButton.setOpaque(false);
+		hostButton.setContentAreaFilled(false);
 		hostButton.setBorderPainted(false);
+		joinButton.setOpaque(false);
+		joinButton.setContentAreaFilled(false);
 		joinButton.setBorderPainted(false);
 		
 		CellA1.addActionListener(this);
