@@ -9,7 +9,7 @@ public class DatabaseAccess{
 	
 	public static BufferedImage imageloading(String strFilename){
 		try{
-			return ImageIO.read(new File(strFilename+".png"));
+			return ImageIO.read(new File("Database/"+strFilename+".png"));
 		}catch(IOException e){
 			return null;
 		}
