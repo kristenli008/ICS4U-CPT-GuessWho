@@ -88,14 +88,25 @@ public class UI implements ActionListener{
 
 		}else if(evt.getSource() == joinButton){
 			String strIPJoin = null;
-			while(strIPJoin == null){
-				// Just testing for now
-				strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
-				//strIPJoin = JOptionPane.showInputDialog(theFrame, "Invalid! Enter the host's IP", "INVALID & REJOIN", JOptionPane.PLAIN_MESSAGE);
+			boolean blnConnected = false;
+			while(blnConnected == false){
+				while(strIPJoin == null){
+					// Just testing for now
+					strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
+					//strIPJoin = JOptionPane.showInputDialog(theFrame, "Invalid! Enter the host's IP", "INVALID & REJOIN", JOptionPane.PLAIN_MESSAGE);
+				}
+				
+				ssm = new SuperSocketMaster(strIPJoin, 1234, this);
+				ssm.connect();
+				
+				blnConnected = ssm.sendText("test");
+				if(blnConnected == false){
+					strIPJoin = null;
+				}
+			
+				System.out.println(blnConnected);
 			}
 			
-			ssm = new SuperSocketMaster(strIPJoin, 1234, this);
-			ssm.connect();
 			System.out.println("Input the host's ip or hostname");
 			
 			theFrame.setContentPane(selectPanel);
@@ -554,31 +565,85 @@ public class UI implements ActionListener{
 		CellC8.setBounds(intCellMarginX+721,intCellMarginY+310,103,155);
 		
 		//BUTTON VISIBILITY 
-		CellA1.setVisible(false);
-		CellA2.setVisible(false);
-		CellA3.setVisible(false);
-		CellA4.setVisible(false);
-		CellA5.setVisible(false);
-		CellA6.setVisible(false);
-		CellA7.setVisible(false);
-		CellA8.setVisible(false);
-		CellB1.setVisible(false);
-		CellB2.setVisible(false);
-		CellB3.setVisible(false);
-		CellB4.setVisible(false);
-		CellB5.setVisible(false);
-		CellB6.setVisible(false);
-		CellB7.setVisible(false);
-		CellB8.setVisible(false);
-		CellC1.setVisible(false);
-		CellC2.setVisible(false);
-		CellC3.setVisible(false);
-		CellC4.setVisible(false);
-		CellC5.setVisible(false);
-		CellC6.setVisible(false);
-		CellC7.setVisible(false);
-		CellC8.setVisible(false);
-		SelectionConfirm.setVisible(false);
+		
+		CellA1.setOpaque(false);
+		CellA1.setContentAreaFilled(false);
+		CellA1.setBorderPainted(false);
+		CellA2.setOpaque(false);
+		CellA2.setContentAreaFilled(false);
+		CellA2.setBorderPainted(false);
+		CellA3.setOpaque(false);
+		CellA3.setContentAreaFilled(false);
+		CellA3.setBorderPainted(false);
+		CellA4.setOpaque(false);
+		CellA4.setContentAreaFilled(false);
+		CellA4.setBorderPainted(false);
+		CellA5.setOpaque(false);
+		CellA5.setContentAreaFilled(false);
+		CellA5.setBorderPainted(false);
+		CellA6.setOpaque(false);
+		CellA6.setContentAreaFilled(false);
+		CellA6.setBorderPainted(false);
+		CellA7.setOpaque(false);
+		CellA7.setContentAreaFilled(false);
+		CellA7.setBorderPainted(false);
+		CellA8.setOpaque(false);
+		CellA8.setContentAreaFilled(false);
+		CellA8.setBorderPainted(false);
+		
+		CellB1.setOpaque(false);
+		CellB1.setContentAreaFilled(false);
+		CellB1.setBorderPainted(false);
+		CellB2.setOpaque(false);
+		CellB2.setContentAreaFilled(false);
+		CellB2.setBorderPainted(false);
+		CellB3.setOpaque(false);
+		CellB3.setContentAreaFilled(false);
+		CellB3.setBorderPainted(false);
+		CellB4.setOpaque(false);
+		CellB4.setContentAreaFilled(false);
+		CellB4.setBorderPainted(false);
+		CellB5.setOpaque(false);
+		CellB5.setContentAreaFilled(false);
+		CellB5.setBorderPainted(false);
+		CellB6.setOpaque(false);
+		CellB6.setContentAreaFilled(false);
+		CellB6.setBorderPainted(false);
+		CellB7.setOpaque(false);
+		CellB7.setContentAreaFilled(false);
+		CellB7.setBorderPainted(false);
+		CellB8.setOpaque(false);
+		CellB8.setContentAreaFilled(false);
+		CellB8.setBorderPainted(false);
+		
+		CellC1.setOpaque(false);
+		CellC1.setContentAreaFilled(false);
+		CellC1.setBorderPainted(false);
+		CellC2.setOpaque(false);
+		CellC2.setContentAreaFilled(false);
+		CellC2.setBorderPainted(false);
+		CellC3.setOpaque(false);
+		CellC3.setContentAreaFilled(false);
+		CellC3.setBorderPainted(false);
+		CellC4.setOpaque(false);
+		CellC4.setContentAreaFilled(false);
+		CellC4.setBorderPainted(false);
+		CellC5.setOpaque(false);
+		CellC5.setContentAreaFilled(false);
+		CellC5.setBorderPainted(false);
+		CellC6.setOpaque(false);
+		CellC6.setContentAreaFilled(false);
+		CellC6.setBorderPainted(false);
+		CellC7.setOpaque(false);
+		CellC7.setContentAreaFilled(false);
+		CellC7.setBorderPainted(false);
+		CellC8.setOpaque(false);
+		CellC8.setContentAreaFilled(false);
+		CellC8.setBorderPainted(false);
+		
+		SelectionConfirm.setOpaque(false);
+		SelectionConfirm.setContentAreaFilled(false);
+		SelectionConfirm.setBorderPainted(false);
 		hostButton.setOpaque(false);
 		hostButton.setContentAreaFilled(false);
 		hostButton.setBorderPainted(false);
