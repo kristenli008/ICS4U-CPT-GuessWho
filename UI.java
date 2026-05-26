@@ -21,10 +21,12 @@ public class UI implements ActionListener{
 	JButton joinButton = new JButton("");
 	JButton testbutton = new JButton("Gameplay Screen");
 	
+	// testing
 	JTextField testField = new JTextField();
 	JLabel testLabel = new JLabel("");
 	
 	//JScrollPane testScroll = new JScrollPane(testArea);
+	//Home Screen
 	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
 	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
 	JLabel Send = new JLabel("SEND");
@@ -65,8 +67,13 @@ public class UI implements ActionListener{
 	int intCellMarginY=148;
 	boolean Gameplay = false;
 	
+	//Chat Boxes
+	JTextArea GuessingChat = new JTextArea("guessing will begin below");
+	JTextArea RegularChat = new JTextArea("chat will begin below.");
+	JTextField ChatInputBox = new JTextField("");
+	JButton SendMessageButton = new JButton("");
+	
 	//images
-	//BufferedImage riceshower = DatabaseAccess.imageloading("rice shower");
 	
 	// Methods
 	
@@ -90,11 +97,11 @@ public class UI implements ActionListener{
 			String strIPJoin = null;
 			boolean blnConnected = false;
 			while(blnConnected == false){
-				while(strIPJoin == null){
+				//while(strIPJoin == null){
 					// Just testing for now
 					strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
-					//strIPJoin = JOptionPane.showInputDialog(theFrame, "Invalid! Enter the host's IP", "INVALID & REJOIN", JOptionPane.PLAIN_MESSAGE);
-				}
+					
+				//}
 				
 				ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 				ssm.connect();
@@ -119,6 +126,10 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == testbutton){
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
+		}else if(evt.getSource() == SendMessageButton || evt.getSource() == ChatInputBox){
+			ssm.sendText(ChatInputBox.getText());
+			RegularChat.append("\n"+ChatInputBox.getText());
+			ChatInputBox.setText("");
 		}else if(Gameplay == false){
 			if(evt.getSource() == SelectionConfirm){
 				System.out.println("GAME START");
@@ -532,6 +543,27 @@ public class UI implements ActionListener{
 		gameplayPanel.setLayout(null);
 		gameplayPanel.setPreferredSize(new Dimension(1280,720));
 		
+		//Chat Boxes
+		RegularChat.setBounds(926,317,319,335);
+		RegularChat.setEditable(false);
+		RegularChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		RegularChat.setForeground(new Color(69,65,186));
+		gameplayPanel.add(RegularChat);
+		
+		GuessingChat.setBounds(925,31,335,241);
+		GuessingChat.setEditable(false);
+		GuessingChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		GuessingChat.setForeground(new Color(69,65,186));
+		gameplayPanel.add(GuessingChat);
+		
+		ChatInputBox.setBounds(936,667,245,34);
+		gameplayPanel.add(ChatInputBox);
+		ChatInputBox.addActionListener(this);
+		
+		SendMessageButton.setBounds(1206,665,38,38);
+		gameplayPanel.add(SendMessageButton);
+		SendMessageButton.addActionListener(this);
+		
 		//Selection Panel
 		selectPanel.setLayout(null);
 		selectPanel.setPreferredSize(new Dimension(1280,720));
@@ -650,6 +682,9 @@ public class UI implements ActionListener{
 		joinButton.setOpaque(false);
 		joinButton.setContentAreaFilled(false);
 		joinButton.setBorderPainted(false);
+		
+		SendMessageButton.setOpaque(false);
+		SendMessageButton.setContentAreaFilled(false);
 		
 		CellA1.addActionListener(this);
 		CellA2.addActionListener(this);
