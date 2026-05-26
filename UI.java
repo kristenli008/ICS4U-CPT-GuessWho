@@ -67,6 +67,8 @@ public class UI implements ActionListener{
 	int intCellMarginY=148;
 	boolean Gameplay = false;
 	
+	boolean blnConnected = false;
+	
 	//Chat Boxes
 	JTextArea GuessingChat = new JTextArea("guessing will begin below");
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
@@ -94,14 +96,17 @@ public class UI implements ActionListener{
 		//	theFrame.pack();
 
 		}else if(evt.getSource() == joinButton){
+			
+			if(blnConnected == true){
+				ssm.disconnect();
+			}
+			
 			String strIPJoin = null;
-			boolean blnConnected = false;
+			blnConnected = false;
+			
+			
 			while(blnConnected == false){
-				//while(strIPJoin == null){
-					// Just testing for now
-					strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
-					
-				//}
+				strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
 				
 				ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 				ssm.connect();
@@ -109,14 +114,17 @@ public class UI implements ActionListener{
 				blnConnected = ssm.sendText("test");
 				if(blnConnected == false){
 					strIPJoin = null;
+					ssm.disconnect();
+					System.out.println("Disconnected");
+					break;
+				}else{
+					System.out.println("Connected");
 				}
 			
 				System.out.println(blnConnected);
 			}
 			
-			System.out.println("Input the host's ip or hostname");
-			
-			theFrame.setContentPane(selectPanel);
+			//theFrame.setContentPane(selectPanel);
 		}else if(evt.getSource() == testField){
 			ssm.sendText(testField.getText());
 			testField.setText("");
