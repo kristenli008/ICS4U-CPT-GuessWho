@@ -108,6 +108,8 @@ public class UI implements ActionListener{
 			while(blnConnected == false){
 				strIPJoin = JOptionPane.showInputDialog(theFrame, "Enter the host's IP", "JOINING", JOptionPane.PLAIN_MESSAGE);
 				
+				IPLabel.setText("Connecting...");
+				
 				ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 				ssm.connect();
 				
@@ -116,9 +118,12 @@ public class UI implements ActionListener{
 					strIPJoin = null;
 					ssm.disconnect();
 					System.out.println("Disconnected");
+					IPLabel.setText("IP not found; try again");
 					break;
 				}else{
 					System.out.println("Connected");
+					IPLabel.setText("Connected!");
+					WaitingText.setText("IP: "+strIPJoin);
 				}
 			
 				System.out.println(blnConnected);
