@@ -90,7 +90,17 @@ public class UI implements ActionListener{
 			try{
 				strNetworkMessage = ssm.readText();
 				if(strNetworkMessage.equals("test")){
-					System.out.println("connected to client");
+					WaitingText.setText("Connected!");
+					
+					try{
+						Thread.sleep(5000);
+					}catch(InterruptedException e){
+						System.out.println("sleeping interrupted");
+					}
+					
+					theFrame.setContentPane(gameplayPanel);
+					theFrame.pack();
+					System.out.println("slept");
 				}
 			}catch(NullPointerException e){
 			}
