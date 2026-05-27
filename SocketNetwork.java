@@ -12,6 +12,8 @@ public class SocketNetwork{
 			return 4;
 		}else if(strMessage.startsWith("wilo/")){
 			return 5;
+		}else if(strMessage.startsWith("test/")){
+			return 6;
 		}else{
 			return 0;
 		}

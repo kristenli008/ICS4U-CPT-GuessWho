@@ -14,6 +14,7 @@ public class UI implements ActionListener{
 	//JPanels
 	JHomePanel homePanel = new JHomePanel();
 	JGamePlay gameplayPanel = new JGamePlay();
+	JGridChoosing gridPanel = new JGridChoosing();
 	JSelectionScreen selectPanel = new JSelectionScreen();
 	
 	// JButtons
@@ -75,10 +76,15 @@ public class UI implements ActionListener{
 	JTextField ChatInputBox = new JTextField("");
 	JButton SendMessageButton = new JButton("");
 	String strNetworkMessage;
+	boolean blnHost = false;
+	int intMessageType = 0;
 	
 	//Images
 	
 	//Methods
+	
+	//Grid
+	int intGrid = 0;
 	
 	//Timer
 	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
@@ -89,23 +95,42 @@ public class UI implements ActionListener{
 		if(evt.getSource() == Timer){
 			try{
 				strNetworkMessage = ssm.readText();
-				if(strNetworkMessage.equals("test")){
-					WaitingText.setText("Connected!");
-					
-					try{
-						Thread.sleep(5000);
-					}catch(InterruptedException e){
-						System.out.println("sleeping interrupted");
+				intMessageType = SocketNetwork.sendingcheck(strNetworkMessage);
+				strNetworkMessage = SocketNetwork.parsemsg(strNetworkMessage);
+				
+				if(theFrame.getContentPane() == homePanel){
+					// checking if connected message was sent to client
+					if(intMessageType == 6){
+						WaitingText.setText("Connected!");
+						
+						// sleeping
+						try{
+							Thread.sleep(5000);
+						}catch(InterruptedException e){
+							System.out.println("sleeping interrupted");
+						}
+						
+						// switching panels for client
+						theFrame.setContentPane(gameplayPanel);
+						theFrame.pack();
+					}else if(intMessageType == 3 && blnHost == false){
+						// checking if grid type was sent to client
+						try{
+							intGrid = Integer.parseInt(strNetworkMessage);
+						}catch(NumberFormatException e){
+							System.out.println("not a grid type");
+						}
+						// switching panel
+						theFrame.setContentPane(gameplayPanel);
 					}
+				}else if(theFrame.getContentPane() == gridPanel){
 					
-					theFrame.setContentPane(gameplayPanel);
-					theFrame.pack();
-					System.out.println("slept");
 				}
 			}catch(NullPointerException e){
 			}
 			
 		}else if(evt.getSource() == hostButton){
+			blnHost = true;
 			Timer.start();
 			
 			ssm = new SuperSocketMaster(1234,this);
@@ -118,6 +143,7 @@ public class UI implements ActionListener{
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
 
 		}else if(evt.getSource() == joinButton){
+			blnHost = false;
 			
 			if(blnConnected == true){
 				ssm.disconnect();
@@ -135,7 +161,7 @@ public class UI implements ActionListener{
 				ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 				ssm.connect();
 				
-				blnConnected = ssm.sendText("test");
+				blnConnected = ssm.sendText("test/");
 				if(blnConnected == false){
 					strIPJoin = null;
 					ssm.disconnect();
@@ -145,7 +171,8 @@ public class UI implements ActionListener{
 				}else{
 					//System.out.println("Connected");
 					IPLabel.setText("Connected!");
-					WaitingText.setText("IP: "+strIPJoin);
+					WaitingText.setText("waiting for host to select grid...");
+					
 					
 				}
 			
