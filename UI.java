@@ -74,7 +74,7 @@ public class UI implements ActionListener{
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
 	JTextField ChatInputBox = new JTextField("");
 	JButton SendMessageButton = new JButton("");
-	String strNetworkMessage = null;
+	String strNetworkMessage;
 	
 	//Images
 	
@@ -87,10 +87,14 @@ public class UI implements ActionListener{
 	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
-			strNetworkMessage = ssm.readText();
-			if(strNetworkMessage.equals("test")){
-				System.out.println("connected to client");
+			try{
+				strNetworkMessage = ssm.readText();
+				if(strNetworkMessage.equals("test")){
+					System.out.println("connected to client");
+				}
+			}catch(NullPointerException e){
 			}
+			
 		}else if(evt.getSource() == hostButton){
 			Timer.start();
 			
