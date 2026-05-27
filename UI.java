@@ -63,6 +63,9 @@ public class UI implements ActionListener{
 	JButton CellC8 = new JButton("");
 	
 	JButton SelectionConfirm = new JButton("");
+
+	JButton Grid1 = new JButton("");
+	JButton Grid2 = new JButton("");
 	
 	int intCellMarginX=227;
 	int intCellMarginY=148;
@@ -183,17 +186,24 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == testField){
 			ssm.sendText(testField.getText());
 			testField.setText("");
-		}else if(evt.getSource() == ssm){
-			String strLine = ssm.readText();
-			testLabel.setText(strLine + "\n");
 		}else if(evt.getSource() == testbutton){
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
 		}else if(evt.getSource() == SendMessageButton || evt.getSource() == ChatInputBox){
-			ssm.sendText(ChatInputBox.getText());
+			// sending chat message
+			ssm.sendText("chat/" + ChatInputBox.getText());
 			RegularChat.append("\n"+ChatInputBox.getText());
 			ChatInputBox.setText("");
+		}else if(evt.getSource() == Grid1){
+			// choosing grid 1 via button
+			intGrid = 1;
+			ssm.sendText("grid/" + intGrid);
+		}else if(evt.getSource() == Grid2){
+			// choosing grid 2 via button
+			intGrid = 2;
+			ssm.sendText("grid/" + intGrid);
 		}else if(Gameplay == false){
+			// painting gameplay panel buttons
 			if(evt.getSource() == SelectionConfirm){
 				System.out.println("GAME START");
 				theFrame.setContentPane(gameplayPanel);
@@ -627,7 +637,19 @@ public class UI implements ActionListener{
 		gameplayPanel.add(SendMessageButton);
 		SendMessageButton.addActionListener(this);
 		
-		//Selection Panel
+		//Grid Selection Panel
+		gridPanel.setLayout(null);
+		gridPanel.setPreferredSize(new Dimension(1280,720));
+		
+		Grid1.setBounds(482,200,294,135);
+		Grid1.addActionListener(this);
+		gridPanel.add(Grid1);
+		
+		Grid2.setBounds(482,371,294,135);
+		Grid2.addActionListener(this);
+		gridPanel.add(Grid2);
+		
+		//Character Selection Panel
 		selectPanel.setLayout(null);
 		selectPanel.setPreferredSize(new Dimension(1280,720));
 		
@@ -735,6 +757,13 @@ public class UI implements ActionListener{
 		CellC8.setOpaque(false);
 		CellC8.setContentAreaFilled(false);
 		CellC8.setBorderPainted(false);
+		
+		Grid1.setOpaque(false);
+		Grid1.setContentAreaFilled(false);
+		Grid1.setBorderPainted(false);
+		Grid2.setOpaque(false);
+		Grid2.setContentAreaFilled(false);
+		Grid2.setBorderPainted(false);
 		
 		SelectionConfirm.setOpaque(false);
 		SelectionConfirm.setContentAreaFilled(false);
