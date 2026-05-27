@@ -74,16 +74,26 @@ public class UI implements ActionListener{
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
 	JTextField ChatInputBox = new JTextField("");
 	JButton SendMessageButton = new JButton("");
-	String strNetworkMessage = "";
+	String strNetworkMessage = null;
 	
-	//images
+	//Images
 	
-	// Methods
+	//Methods
+	
+	//Timer
+	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
 	
 	
 	
 	public void actionPerformed(ActionEvent evt){
-		if(evt.getSource() == hostButton){
+		if(evt.getSource() == Timer){
+			strNetworkMessage = ssm.readText();
+			if(strNetworkMessage.equals("test")){
+				System.out.println("connected to client");
+			}
+		}else if(evt.getSource() == hostButton){
+			Timer.start();
+			
 			ssm = new SuperSocketMaster(1234,this);
 			ssm.connect();
 			
@@ -92,13 +102,6 @@ public class UI implements ActionListener{
 			
 			// Maybe print to screen or give random code for users to join
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
-			
-			while(true){
-				strNetworkMessage = ssm.readText();
-				if(strNetworkMessage.equals("test")){
-					System.out.println("connected to client");
-				}
-			}
 
 		}else if(evt.getSource() == joinButton){
 			
@@ -760,6 +763,7 @@ public class UI implements ActionListener{
 		theFrame.setResizable(false);
 		theFrame.pack();
 		theFrame.setVisible(true);
+		
 		
 		
 	}  
