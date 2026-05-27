@@ -74,6 +74,7 @@ public class UI implements ActionListener{
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
 	JTextField ChatInputBox = new JTextField("");
 	JButton SendMessageButton = new JButton("");
+	String strNetworkMessage = "";
 	
 	//images
 	
@@ -92,8 +93,12 @@ public class UI implements ActionListener{
 			// Maybe print to screen or give random code for users to join
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
 			
-		//	theFrame.setContentPane(selectPanel);
-		//	theFrame.pack();
+			while(true){
+				strNetworkMessage = ssm.readText();
+				if(strNetworkMessage.equals("test")){
+					System.out.println("connected to client");
+				}
+			}
 
 		}else if(evt.getSource() == joinButton){
 			
@@ -117,13 +122,14 @@ public class UI implements ActionListener{
 				if(blnConnected == false){
 					strIPJoin = null;
 					ssm.disconnect();
-					System.out.println("Disconnected");
+					//System.out.println("Disconnected");
 					IPLabel.setText("IP not found; try again");
 					break;
 				}else{
-					System.out.println("Connected");
+					//System.out.println("Connected");
 					IPLabel.setText("Connected!");
 					WaitingText.setText("IP: "+strIPJoin);
+					
 				}
 			
 				System.out.println(blnConnected);
