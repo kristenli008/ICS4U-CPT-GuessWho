@@ -197,14 +197,14 @@ public class UI implements ActionListener{
 			theFrame.setContentPane(gridPanel);
 			theFrame.pack();
 		}else if(evt.getSource() == Grid1){
-			gameplayPanel.strSelectedGrid = "grid1.csv";
-			selectPanel.strSelectedGrid = "grid1.csv";
+			selectPanel.strSelectedGrid = "grid1";
+			gameplayPanel.strSelectedGrid = "grid1";
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
 			
 		}else if(evt.getSource() == Grid2){
-			gameplayPanel.strSelectedGrid = "grid2.csv";
-			selectPanel.strSelectedGrid = "grid2.csv";
+			selectPanel.strSelectedGrid = "grid2";
+			gameplayPanel.strSelectedGrid = "grid2";
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
 		
@@ -213,7 +213,7 @@ public class UI implements ActionListener{
 			ssm.sendText("chat/" + ChatInputBox.getText());
 			RegularChat.append("\n"+ChatInputBox.getText());
 			ChatInputBox.setText("");
-		}else if(Gameplay == false){
+		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
 			if(evt.getSource() == SelectionConfirm){
 				System.out.println("GAME START");
@@ -274,8 +274,8 @@ public class UI implements ActionListener{
 				gameplayPanel.add(CellC6);
 				gameplayPanel.add(CellC7);
 				gameplayPanel.add(CellC8);
-				
-				Gameplay = true;
+				//Gameplay = true;
+
 			}else if(evt.getSource() == CellA1){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 0;
@@ -349,8 +349,9 @@ public class UI implements ActionListener{
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 7;
 			}
+
 		
-		}else if(Gameplay == true){
+		}else if(theFrame.getContentPane() == gameplayPanel){
 			if(evt.getSource() == CellA1){
 				if(gameplayPanel.CellA1OPEN ==true){
 					CellA1.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
@@ -775,6 +776,7 @@ public class UI implements ActionListener{
 		Grid2.setOpaque(false);
 		Grid2.setContentAreaFilled(false);
 		Grid2.setBorderPainted(false);
+		
 		
 		SelectionConfirm.setOpaque(false);
 		SelectionConfirm.setContentAreaFilled(false);

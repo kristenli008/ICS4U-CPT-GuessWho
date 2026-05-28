@@ -41,7 +41,7 @@ public class DatabaseAccess{
 	public static BufferedReader fileloading(String strFilename){
 		BufferedReader theFile = null;
 		try{
-			theFile = new BufferedReader(new FileReader("Database/"+strFilename));
+			theFile = new BufferedReader(new FileReader("Database/"+strFilename+".csv"));
 
 		}catch(FileNotFoundException e){
 			System.out.println("FILE NOT FOUND");

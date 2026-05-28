@@ -43,7 +43,7 @@ public class JGamePlay extends JPanel{
 	//Other Assets
 	
 	
-	BufferedReader gridchoice = null;
+	BufferedReader gridchoice;
 	
 	
 	// methods
@@ -58,9 +58,7 @@ public class JGamePlay extends JPanel{
 		int intGridrow;
 		int intGridcol;
 		String strGrid[][];
-		strGrid = new String[3][8];
-		strSelectedGrid="";
-		
+		strGrid = new String[3][8];		
 		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
 	
 		if(gridchoice != null){

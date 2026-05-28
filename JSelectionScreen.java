@@ -7,7 +7,7 @@ import java.awt.image.*;
 public class JSelectionScreen extends JPanel{
 	//Properties
 	BufferedImage selectionbg = null;
-	BufferedReader gridchoice = null;
+	BufferedReader gridchoice;
 	String strSelectedGrid;
 	
 	
@@ -24,7 +24,6 @@ public class JSelectionScreen extends JPanel{
 		int intGridcol;
 		String strGrid[][];
 		strGrid = new String[3][8];
-		strSelectedGrid = "";
 		
 		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
 
@@ -34,7 +33,7 @@ public class JSelectionScreen extends JPanel{
 				try{
 					strLine = gridchoice.readLine();
 				}catch(IOException e){
-					strLine = "daitakuhelios";
+					strLine = " ";
 				}
 				strSplit = strLine.split(",");
 				for(intGridcol = 0; intGridcol<8; intGridcol++){
