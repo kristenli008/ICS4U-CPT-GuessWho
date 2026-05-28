@@ -96,6 +96,8 @@ public class UI implements ActionListener{
 	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
+			
+		}else if(evt.getSource() == ssm){
 			try{
 				strNetworkMessage = ssm.readText();
 				intMessageType = SocketNetwork.sendingcheck(strNetworkMessage);
@@ -130,6 +132,7 @@ public class UI implements ActionListener{
 					
 				}
 			}catch(NullPointerException e){
+				System.out.println("null pointer exception");
 			}
 			
 		}else if(evt.getSource() == hostButton){
