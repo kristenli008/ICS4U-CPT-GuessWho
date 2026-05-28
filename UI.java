@@ -100,6 +100,7 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == ssm){
 			try{
 				strNetworkMessage = ssm.readText();
+				System.out.println(strNetworkMessage);
 				intMessageType = SocketNetwork.sendingcheck(strNetworkMessage);
 				strNetworkMessage = SocketNetwork.parsemsg(strNetworkMessage);
 				
@@ -108,12 +109,14 @@ public class UI implements ActionListener{
 					if(intMessageType == 6){
 						WaitingText.setText("Connected!");
 						
+						/*
 						// sleeping
 						try{
 							Thread.sleep(5000);
 						}catch(InterruptedException e){
 							System.out.println("sleeping interrupted");
 						}
+						*/
 						
 						// switching panels for client
 						theFrame.setContentPane(gameplayPanel);
@@ -167,7 +170,7 @@ public class UI implements ActionListener{
 				ssm = new SuperSocketMaster(strIPJoin, 1234, this);
 				ssm.connect();
 				
-				blnConnected = ssm.sendText("test/");
+				blnConnected = ssm.sendText("test/test");
 				if(blnConnected == false){
 					strIPJoin = null;
 					ssm.disconnect();
