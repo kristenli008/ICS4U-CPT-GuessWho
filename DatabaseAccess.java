@@ -29,14 +29,26 @@ public class DatabaseAccess{
 		String strGrid = "";
 		if(blninput == true){
 			if(intGrid == 1){
-				strGrid = "grid1.png";
+				strGrid = "grid1.csv";
 			}else if(intGrid == 2){
-				strGrid = "grid2.png";
+				strGrid = "grid2.csv";
 			}
 		}else if(blninput == false){
 			return strGrid;
 		}
 		return strGrid;
 	}
+	public static BufferedReader fileloading(String strFilename){
+		BufferedReader theFile = null;
+		try{
+			theFile = new BufferedReader(new FileReader("Database/"+strFilename));
+
+		}catch(FileNotFoundException e){
+			System.out.println("FILE NOT FOUND");
+		}
+		return theFile;
+	}
+	
+
 	
 }

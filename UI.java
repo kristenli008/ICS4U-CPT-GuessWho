@@ -70,6 +70,7 @@ public class UI implements ActionListener{
 	int intCellMarginX=227;
 	int intCellMarginY=148;
 	boolean Gameplay = false;
+	String strGridSelection;
 	
 	boolean blnConnected = false;
 	
@@ -193,21 +194,25 @@ public class UI implements ActionListener{
 			ssm.sendText(testField.getText());
 			testField.setText("");
 		}else if(evt.getSource() == testbutton){
+			theFrame.setContentPane(gridPanel);
+			theFrame.pack();
+		}else if(evt.getSource() == Grid1){
+			gameplayPanel.strSelectedGrid = "grid1.csv";
+			selectPanel.strSelectedGrid = "grid1.csv";
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
+			
+		}else if(evt.getSource() == Grid2){
+			gameplayPanel.strSelectedGrid = "grid2.csv";
+			selectPanel.strSelectedGrid = "grid2.csv";
+			theFrame.setContentPane(selectPanel);
+			theFrame.pack();
+		
 		}else if(evt.getSource() == SendMessageButton || evt.getSource() == ChatInputBox){
 			// sending chat message
 			ssm.sendText("chat/" + ChatInputBox.getText());
 			RegularChat.append("\n"+ChatInputBox.getText());
 			ChatInputBox.setText("");
-		}else if(evt.getSource() == Grid1){
-			// choosing grid 1 via button
-			intGrid = 1;
-			ssm.sendText("grid/" + intGrid);
-		}else if(evt.getSource() == Grid2){
-			// choosing grid 2 via button
-			intGrid = 2;
-			ssm.sendText("grid/" + intGrid);
 		}else if(Gameplay == false){
 			// painting gameplay panel buttons
 			if(evt.getSource() == SelectionConfirm){

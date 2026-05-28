@@ -39,6 +39,7 @@ public class JGamePlay extends JPanel{
 	int umarow=2;
 	int umacol=3;
 	
+	String strSelectedGrid;
 	//Other Assets
 	
 	
@@ -58,14 +59,10 @@ public class JGamePlay extends JPanel{
 		int intGridcol;
 		String strGrid[][];
 		strGrid = new String[3][8];
-		String strSelectedGrid;
-		strSelectedGrid = DatabaseAccess.SelectedGrid(0,false);
+		strSelectedGrid="";
 		
-		try{
-			gridchoice = new BufferedReader(new FileReader(strSelectedGrid));
-		}catch(FileNotFoundException e){
-			System.out.println("FILE NOT FOUND");
-		}
+		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
+	
 		if(gridchoice != null){
 			for(intGridrow = 0; intGridrow<3; intGridrow++){
 				//read each line each new introw 
