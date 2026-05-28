@@ -119,7 +119,7 @@ public class UI implements ActionListener{
 						*/
 						
 						// switching panels for client
-						theFrame.setContentPane(gameplayPanel);
+						theFrame.setContentPane(gridPanel);
 						theFrame.pack();
 					}else if(intMessageType == 3 && blnHost == false){
 						// checking if grid type was sent to client
