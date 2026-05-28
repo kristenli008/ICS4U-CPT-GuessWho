@@ -40,6 +40,8 @@ public class JGamePlay extends JPanel{
 	int umacol=3;
 	
 	String strSelectedGrid;
+	String strGrid[][];
+	String strUma = "no uma";
 	//Other Assets
 	
 	
@@ -57,11 +59,14 @@ public class JGamePlay extends JPanel{
 		String strCell;
 		int intGridrow;
 		int intGridcol;
-		String strGrid[][];
+		
+		
+		
 		strGrid = new String[3][8];		
 		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
 	
 		if(gridchoice != null){
+			
 			for(intGridrow = 0; intGridrow<3; intGridrow++){
 				//read each line each new introw 
 				try{
@@ -84,14 +89,11 @@ public class JGamePlay extends JPanel{
 				}
 			}
 			g.drawImage(DatabaseAccess.imageloading(strGrid[umarow][umacol]), 376,29,null);
+			//strUma = strGrid[umarow][umacol];
 		}
 		
-	/*	if(CellA1OPEN == true){
-			g.drawImage(DatabaseAccess.imageloading(strGrid[0][0]), 45, 205,null);
-		}else if(CellA1OPEN ==false){
-			g.drawImage(DatabaseAccess.imageloading("closedcell"),45,205,null);
-		}*/
-		//g.drawImage(riceshower,0,0,null);
+		
+		
 	}
 	
 	// constructor

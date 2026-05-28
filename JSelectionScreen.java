@@ -10,7 +10,9 @@ public class JSelectionScreen extends JPanel{
 	BufferedReader gridchoice;
 	String strSelectedGrid;
 	
-	
+	int umarow = 2;
+	int umacol = 3;
+			String strGrid[][];
 	
 	//Methods
 	public void paintComponent(Graphics g){
@@ -22,7 +24,7 @@ public class JSelectionScreen extends JPanel{
 		String strCell;
 		int intGridrow;
 		int intGridcol;
-		String strGrid[][];
+
 		strGrid = new String[3][8];
 		
 		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
@@ -49,6 +51,8 @@ public class JSelectionScreen extends JPanel{
 					g.drawImage(DatabaseAccess.imageloading(strCell), intGridcol*103+227, intGridrow*155+148,null);
 				}
 			}
+			//g.drawImage(DatabaseAccess.imageloading(strGrid[umarow][umacol]), 1080,300,null);
+		//	System.out.println(umarow + " " + umacol + " " + strGrid[umarow][umacol]);
 		}
 
 	}

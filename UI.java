@@ -32,6 +32,7 @@ public class UI implements ActionListener{
 	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
 	JLabel Send = new JLabel("SEND");
 	JLabel Area = new JLabel("AREA");
+	JLabel SelectedUmaPreview = new JLabel("");
 	SuperSocketMaster ssm = null;
 	
 	//Grid Buttons
@@ -97,7 +98,8 @@ public class UI implements ActionListener{
 	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
-			
+			//SelectedUmaPreview.setIcon(new ImageIcon(DatabaseAccess.imageloading(gameplayPanel.strUma)));
+			//selectPanel.repaint();
 		}else if(evt.getSource() == ssm){
 			try{
 				strNetworkMessage = ssm.readText();
@@ -279,76 +281,102 @@ public class UI implements ActionListener{
 			}else if(evt.getSource() == CellA1){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 0;
+		
 			}else if(evt.getSource() == CellA2){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 1;
+		
 			}else if(evt.getSource() == CellA3){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 2;
+
 			}else if(evt.getSource() == CellA4){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 3;
+		
 			}else if(evt.getSource() == CellA5){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 4;
+	
 			}else if(evt.getSource() == CellA6){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 5;
+		
 			}else if(evt.getSource() == CellA7){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 6;
+			
 			}else if(evt.getSource() == CellA8){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 7;
+			
 			}else if(evt.getSource() == CellB1){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 0;
+		
 			}else if(evt.getSource() == CellB2){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 1;
+		
 			}else if(evt.getSource() == CellB3){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 2;
+	
 			}else if(evt.getSource() == CellB4){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 3;
+	
 			}else if(evt.getSource() == CellB5){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 4;
+
 			}else if(evt.getSource() == CellB6){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 5;
+			
 			}else if(evt.getSource() == CellB7){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 6;
+		
 			}else if(evt.getSource() == CellB8){
 				gameplayPanel.umarow = 1;
 				gameplayPanel.umacol = 7;
+		
 			}else if(evt.getSource() == CellC1){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 0;
+		
 			}else if(evt.getSource() == CellC2){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 1;
+	
 			}else if(evt.getSource() == CellC3){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 2;
+	
 			}else if(evt.getSource() == CellC4){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 3;
+
 			}else if(evt.getSource() == CellC5){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 4;
+
 			}else if(evt.getSource() == CellC6){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 5;
+
 			}else if(evt.getSource() == CellC7){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 6;
 			}else if(evt.getSource() == CellC8){
 				gameplayPanel.umarow = 2;
 				gameplayPanel.umacol = 7;
+				
 			}
+		//	System.out.println(gameplayPanel.umarow+ " "+ gameplayPanel.umacol+" "+gameplayPanel.strGrid[gameplayPanel.umarow][gameplayPanel.umacol]);
+		//	SelectedUmaPreview.setIcon(new ImageIcon(DatabaseAccess.imageloading(gameplayPanel.strUma)));
+
 
 		
 		}else if(theFrame.getContentPane() == gameplayPanel){
@@ -617,6 +645,9 @@ public class UI implements ActionListener{
 		
 		Area.setBounds(500, 500, 100, 100);
 		//homePanel.add(Area);
+		
+		SelectedUmaPreview.setBounds(1080,375,103,155);
+		selectPanel.add(SelectedUmaPreview);
 		
 		
 		SelectionConfirm.setBounds(1078,556,130,62);
