@@ -25,4 +25,18 @@ public class DatabaseAccess{
 		return theFont;
 	}
 	
+	public static String SelectedGrid(int intGrid, boolean blninput){
+		String strGrid = "";
+		if(blninput == true){
+			if(intGrid == 1){
+				strGrid = "grid1.png";
+			}else if(intGrid == 2){
+				strGrid = "grid2.png";
+			}
+		}else if(blninput == false){
+			return strGrid;
+		}
+		return strGrid;
+	}
+	
 }

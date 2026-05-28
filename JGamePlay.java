@@ -58,9 +58,11 @@ public class JGamePlay extends JPanel{
 		int intGridcol;
 		String strGrid[][];
 		strGrid = new String[3][8];
+		String strSelectedGrid;
+		strSelectedGrid = DatabaseAccess.SelectedGrid(0,false);
 		
 		try{
-			gridchoice = new BufferedReader(new FileReader("grid1.csv"));
+			gridchoice = new BufferedReader(new FileReader(strSelectedGrid));
 		}catch(FileNotFoundException e){
 			System.out.println("FILE NOT FOUND");
 		}
