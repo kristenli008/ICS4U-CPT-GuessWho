@@ -136,6 +136,10 @@ public class UI implements ActionListener{
 					}
 				}else if(theFrame.getContentPane() == gridPanel){
 					
+				}else if(theFrame.getContentPane() == gameplayPanel){
+					
+				}if(intMessageType == 1){
+					RegularChat.append("\nOpponent: "+strNetworkMessage);
 				}
 			}catch(NullPointerException e){
 				System.out.println("null pointer exception");
@@ -660,13 +664,13 @@ public class UI implements ActionListener{
 		gameplayPanel.setPreferredSize(new Dimension(1280,720));
 		
 		//Chat Boxes
-		RegularChat.setBounds(926,317,319,335);
+		RegularChat.setBounds(925,317,321,324);
 		RegularChat.setEditable(false);
 		RegularChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		RegularChat.setForeground(new Color(69,65,186));
 		gameplayPanel.add(RegularChat);
 		
-		GuessingChat.setBounds(925,31,335,241);
+		GuessingChat.setBounds(925,31,324,232);
 		GuessingChat.setEditable(false);
 		GuessingChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		GuessingChat.setForeground(new Color(69,65,186));
@@ -821,6 +825,7 @@ public class UI implements ActionListener{
 		
 		SendMessageButton.setOpaque(false);
 		SendMessageButton.setContentAreaFilled(false);
+		SendMessageButton.setBorderPainted(false);
 		
 		CellA1.addActionListener(this);
 		CellA2.addActionListener(this);
