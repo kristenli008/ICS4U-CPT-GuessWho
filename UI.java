@@ -108,18 +108,9 @@ public class UI implements ActionListener{
 				strNetworkMessage = SocketNetwork.parsemsg(strNetworkMessage);
 				
 				if(theFrame.getContentPane() == homePanel){
-					// checking if connected message was sent to client
+					// checking if host received client test message
 					if(intMessageType == 6){
 						WaitingText.setText("Connected!");
-						
-						/*
-						// sleeping
-						try{
-							Thread.sleep(5000);
-						}catch(InterruptedException e){
-							System.out.println("sleeping interrupted");
-						}
-						*/
 						
 						// switching panels for client
 						theFrame.setContentPane(gridPanel);
@@ -131,8 +122,14 @@ public class UI implements ActionListener{
 						}catch(NumberFormatException e){
 							System.out.println("not a grid type");
 						}
+						
+						// choosing grid type
+						selectPanel.strSelectedGrid = "grid"+intGrid;
+						gameplayPanel.strSelectedGrid = "grid"+intGrid;
+						
 						// switching panel
 						theFrame.setContentPane(gameplayPanel);
+						theFrame.pack();
 					}
 				}else if(theFrame.getContentPane() == gameplayPanel){
 					
@@ -144,6 +141,7 @@ public class UI implements ActionListener{
 			}
 			
 		}else if(evt.getSource() == hostButton){
+			// hosting game
 			blnHost = true;
 			Timer.start();
 			
