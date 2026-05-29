@@ -202,6 +202,8 @@ public class UI implements ActionListener{
 						// opponent player selected character
 						blnOppready = true;
 						Readyfield.setText("1/2 players ready!");
+						
+						System.out.println("opponent ready");
 					}
 				}else if(theFrame.getContentPane() == gameplayPanel){
 					}if(intMessageType == 1){
@@ -299,6 +301,8 @@ public class UI implements ActionListener{
 				blnPlayready = true;
 				ssm.sendText("redy/.");
 				Readyfield.setText("1/2 players ready!");
+				
+				System.out.println("player ready");
 				
 			}else if(evt.getSource() == CellA1){
 				gameplayPanel.umarow = 0;
