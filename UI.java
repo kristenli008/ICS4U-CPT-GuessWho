@@ -134,12 +134,10 @@ public class UI implements ActionListener{
 						// switching panel
 						theFrame.setContentPane(gameplayPanel);
 					}
-				}else if(theFrame.getContentPane() == gridPanel){
-					
 				}else if(theFrame.getContentPane() == gameplayPanel){
 					
 				}if(intMessageType == 1){
-					RegularChat.append("\nOpponent: "+strNetworkMessage);
+					RegularChat.append("\n\nOpponent: "+strNetworkMessage);
 				}
 			}catch(NullPointerException e){
 				System.out.println("null pointer exception");
@@ -203,21 +201,27 @@ public class UI implements ActionListener{
 			theFrame.setContentPane(gridPanel);
 			theFrame.pack();
 		}else if(evt.getSource() == Grid1){
+			// choosing grid 1
 			selectPanel.strSelectedGrid = "grid1";
 			gameplayPanel.strSelectedGrid = "grid1";
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
 			
+			ssm.sendText("grid/1");
+			
 		}else if(evt.getSource() == Grid2){
+			// choosing grid 2
 			selectPanel.strSelectedGrid = "grid2";
 			gameplayPanel.strSelectedGrid = "grid2";
 			theFrame.setContentPane(selectPanel);
 			theFrame.pack();
+			
+			ssm.sendText("grid/2");
 		
 		}else if(evt.getSource() == SendMessageButton || evt.getSource() == ChatInputBox){
 			// sending chat message
 			ssm.sendText("chat/" + ChatInputBox.getText());
-			RegularChat.append("\n"+ChatInputBox.getText());
+			RegularChat.append("\n\nYou:"+ChatInputBox.getText());
 			ChatInputBox.setText("");
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
