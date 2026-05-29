@@ -14,6 +14,8 @@ public class SocketNetwork{
 			return 5;
 		}else if(strMessage.startsWith("test/")){
 			return 6;
+		}else if(strMessage.startsWith("redy/")){
+			return 7;
 		}else{
 			return 0;
 		}

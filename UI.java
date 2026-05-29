@@ -74,6 +74,8 @@ public class UI implements ActionListener{
 	String strGridSelection;
 	
 	boolean blnConnected = false;
+	boolean blnSelectReady = false;
+	JTextField Readyfield = new JTextField("0/2 players ready!", SwingConstants.CENTER);
 	
 	//Chat Boxes
 	JTextArea GuessingChat = new JTextArea("guessing will begin below");
@@ -128,14 +130,18 @@ public class UI implements ActionListener{
 						gameplayPanel.strSelectedGrid = "grid"+intGrid;
 						
 						// switching panel
-						theFrame.setContentPane(gameplayPanel);
+						theFrame.setContentPane(gridPanel);
 						theFrame.pack();
 					}
+				}else if(theFrame.getContentPane() == selectPanel){	
+					if(intMessageType == 7){
+						blnSelectReady = true;
+						Readyfield.setText("1/2 players ready!");
+					}
 				}else if(theFrame.getContentPane() == gameplayPanel){
-					
-				}if(intMessageType == 1){
-					RegularChat.append("\n\nOpponent: "+strNetworkMessage);
-				}
+					}if(intMessageType == 1){
+						RegularChat.append("\n\nOpponent: "+strNetworkMessage);
+					}
 			}catch(NullPointerException e){
 				System.out.println("null pointer exception");
 			}
@@ -224,66 +230,70 @@ public class UI implements ActionListener{
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
 			if(evt.getSource() == SelectionConfirm){
-				System.out.println("GAME START");
-				theFrame.setContentPane(gameplayPanel);
-				theFrame.pack();
-				intCellMarginX = 45;
-				intCellMarginY = 205;
+				ssm.sendText("redy/.");
 				
-				//Cell buttons
-				CellA1.setBounds(intCellMarginX,intCellMarginY,103,155);		
-				CellA2.setBounds(intCellMarginX+103,intCellMarginY,103,155);		
-				CellA3.setBounds(intCellMarginX+206,intCellMarginY,103,155);		
-				CellA4.setBounds(intCellMarginX+309,intCellMarginY,103,155);		
-				CellA5.setBounds(intCellMarginX+412,intCellMarginY,103,155);		
-				CellA6.setBounds(intCellMarginX+515,intCellMarginY,103,155);		
-				CellA7.setBounds(intCellMarginX+618,intCellMarginY,103,155);		
-				CellA8.setBounds(intCellMarginX+721,intCellMarginY,103,155);
-				//ROW 2
-				CellB1.setBounds(intCellMarginX,intCellMarginY+155,103,155);
-				CellB2.setBounds(intCellMarginX+103,intCellMarginY+155,103,155);		
-				CellB3.setBounds(intCellMarginX+206,intCellMarginY+155,103,155);		
-				CellB4.setBounds(intCellMarginX+309,intCellMarginY+155,103,155);		
-				CellB5.setBounds(intCellMarginX+412,intCellMarginY+155,103,155);		
-				CellB6.setBounds(intCellMarginX+515,intCellMarginY+155,103,155);		
-				CellB7.setBounds(intCellMarginX+618,intCellMarginY+155,103,155);		
-				CellB8.setBounds(intCellMarginX+721,intCellMarginY+155,103,155);
-				//ROW 3
-				CellC1.setBounds(intCellMarginX,intCellMarginY+310,103,155);
-				CellC2.setBounds(intCellMarginX+103,intCellMarginY+310,103,155);		
-				CellC3.setBounds(intCellMarginX+206,intCellMarginY+310,103,155);		
-				CellC4.setBounds(intCellMarginX+309,intCellMarginY+310,103,155);		
-				CellC5.setBounds(intCellMarginX+412,intCellMarginY+310,103,155);		
-				CellC6.setBounds(intCellMarginX+515,intCellMarginY+310,103,155);		
-				CellC7.setBounds(intCellMarginX+618,intCellMarginY+310,103,155);		
-				CellC8.setBounds(intCellMarginX+721,intCellMarginY+310,103,155);
-				
-				gameplayPanel.add(CellA1);
-				gameplayPanel.add(CellA2);
-				gameplayPanel.add(CellA3);
-				gameplayPanel.add(CellA4);
-				gameplayPanel.add(CellA5);
-				gameplayPanel.add(CellA6);
-				gameplayPanel.add(CellA7);
-				gameplayPanel.add(CellA8);
-				gameplayPanel.add(CellB1);
-				gameplayPanel.add(CellB2);
-				gameplayPanel.add(CellB3);
-				gameplayPanel.add(CellB4);
-				gameplayPanel.add(CellB5);
-				gameplayPanel.add(CellB6);
-				gameplayPanel.add(CellB7);
-				gameplayPanel.add(CellB8);
-				gameplayPanel.add(CellC1);
-				gameplayPanel.add(CellC2);
-				gameplayPanel.add(CellC3);
-				gameplayPanel.add(CellC4);
-				gameplayPanel.add(CellC5);
-				gameplayPanel.add(CellC6);
-				gameplayPanel.add(CellC7);
-				gameplayPanel.add(CellC8);
-				//Gameplay = true;
-
+				if(blnSelectReady == true){
+					Readyfield.setText("2/2 players ready!");
+					
+					System.out.println("GAME START");
+					theFrame.setContentPane(gameplayPanel);
+					theFrame.pack();
+					intCellMarginX = 45;
+					intCellMarginY = 205;
+					
+					//Cell buttons
+					CellA1.setBounds(intCellMarginX,intCellMarginY,103,155);		
+					CellA2.setBounds(intCellMarginX+103,intCellMarginY,103,155);		
+					CellA3.setBounds(intCellMarginX+206,intCellMarginY,103,155);		
+					CellA4.setBounds(intCellMarginX+309,intCellMarginY,103,155);		
+					CellA5.setBounds(intCellMarginX+412,intCellMarginY,103,155);		
+					CellA6.setBounds(intCellMarginX+515,intCellMarginY,103,155);		
+					CellA7.setBounds(intCellMarginX+618,intCellMarginY,103,155);		
+					CellA8.setBounds(intCellMarginX+721,intCellMarginY,103,155);
+					//ROW 2
+					CellB1.setBounds(intCellMarginX,intCellMarginY+155,103,155);
+					CellB2.setBounds(intCellMarginX+103,intCellMarginY+155,103,155);		
+					CellB3.setBounds(intCellMarginX+206,intCellMarginY+155,103,155);		
+					CellB4.setBounds(intCellMarginX+309,intCellMarginY+155,103,155);		
+					CellB5.setBounds(intCellMarginX+412,intCellMarginY+155,103,155);		
+					CellB6.setBounds(intCellMarginX+515,intCellMarginY+155,103,155);		
+					CellB7.setBounds(intCellMarginX+618,intCellMarginY+155,103,155);		
+					CellB8.setBounds(intCellMarginX+721,intCellMarginY+155,103,155);
+					//ROW 3
+					CellC1.setBounds(intCellMarginX,intCellMarginY+310,103,155);
+					CellC2.setBounds(intCellMarginX+103,intCellMarginY+310,103,155);		
+					CellC3.setBounds(intCellMarginX+206,intCellMarginY+310,103,155);		
+					CellC4.setBounds(intCellMarginX+309,intCellMarginY+310,103,155);		
+					CellC5.setBounds(intCellMarginX+412,intCellMarginY+310,103,155);		
+					CellC6.setBounds(intCellMarginX+515,intCellMarginY+310,103,155);		
+					CellC7.setBounds(intCellMarginX+618,intCellMarginY+310,103,155);		
+					CellC8.setBounds(intCellMarginX+721,intCellMarginY+310,103,155);
+					
+					gameplayPanel.add(CellA1);
+					gameplayPanel.add(CellA2);
+					gameplayPanel.add(CellA3);
+					gameplayPanel.add(CellA4);
+					gameplayPanel.add(CellA5);
+					gameplayPanel.add(CellA6);
+					gameplayPanel.add(CellA7);
+					gameplayPanel.add(CellA8);
+					gameplayPanel.add(CellB1);
+					gameplayPanel.add(CellB2);
+					gameplayPanel.add(CellB3);
+					gameplayPanel.add(CellB4);
+					gameplayPanel.add(CellB5);
+					gameplayPanel.add(CellB6);
+					gameplayPanel.add(CellB7);
+					gameplayPanel.add(CellB8);
+					gameplayPanel.add(CellC1);
+					gameplayPanel.add(CellC2);
+					gameplayPanel.add(CellC3);
+					gameplayPanel.add(CellC4);
+					gameplayPanel.add(CellC5);
+					gameplayPanel.add(CellC6);
+					gameplayPanel.add(CellC7);
+					gameplayPanel.add(CellC8);
+				}
 			}else if(evt.getSource() == CellA1){
 				gameplayPanel.umarow = 0;
 				gameplayPanel.umacol = 0;
@@ -698,7 +708,14 @@ public class UI implements ActionListener{
 		Grid2.addActionListener(this);
 		gridPanel.add(Grid2);
 		
+		
 		//Character Selection Panel
+		Readyfield.setBounds(440,637,400,28);
+		Readyfield.setEditable(false);
+		Readyfield.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		Readyfield.setForeground(new Color(69,171,242));
+		selectPanel.add(Readyfield);
+		
 		selectPanel.setLayout(null);
 		selectPanel.setPreferredSize(new Dimension(1280,720));
 		
