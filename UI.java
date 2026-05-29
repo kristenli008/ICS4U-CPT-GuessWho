@@ -109,7 +109,7 @@ public class UI implements ActionListener{
 				blnPlayready = false;
 				blnOppready = false;
 				
-				System.out.println(intOppAns[0] + intOppAns[1] + " " + intPlaAns[0] + intPlaAns[1]);
+				System.out.println(intOppAns[0] + " " + intOppAns[1] + " | " + intPlaAns[0] + " " + intPlaAns[1]);
 				
 				Readyfield.setText("2/2 players ready!");
 				
