@@ -130,7 +130,7 @@ public class UI implements ActionListener{
 						gameplayPanel.strSelectedGrid = "grid"+intGrid;
 						
 						// switching panel
-						theFrame.setContentPane(gridPanel);
+						theFrame.setContentPane(selectPanel);
 						theFrame.pack();
 					}
 				}else if(theFrame.getContentPane() == selectPanel){	
