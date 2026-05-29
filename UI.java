@@ -216,7 +216,6 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == hostButton){
 			// hosting game
 			blnHost = true;
-			Timer.start();
 			
 			ssm = new SuperSocketMaster(1234,this);
 			ssm.connect();
@@ -912,7 +911,7 @@ public class UI implements ActionListener{
 		theFrame.pack();
 		theFrame.setVisible(true);
 		
-		
+		Timer.start();
 		
 	}  
 	
