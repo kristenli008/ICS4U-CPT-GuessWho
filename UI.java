@@ -93,6 +93,10 @@ public class UI implements ActionListener{
 	
 	//Grid
 	int intGrid = 0;
+	// opponent's selected character; player must guess
+	int[] intOppAns = new int[2];
+	// player's selected character; opponent must guess
+	int[] intPlaAns = new int[2];
 	
 	//Timer
 	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
@@ -104,6 +108,8 @@ public class UI implements ActionListener{
 			if(blnPlayready == true && blnOppready == true){
 				blnPlayready = false;
 				blnOppready = false;
+				
+				System.out.println(intOppAns[0] + intOppAns[1] + " " + intPlaAns[0] + intPlaAns[1]);
 				
 				Readyfield.setText("2/2 players ready!");
 				
@@ -202,6 +208,8 @@ public class UI implements ActionListener{
 						// opponent player selected character
 						blnOppready = true;
 						Readyfield.setText("1/2 players ready!");
+						intOppAns[0] = Integer.parseInt(strNetworkMessage.substring(0,1));
+						intOppAns[1] = Integer.parseInt(strNetworkMessage.substring(1,2));
 						
 						System.out.println("opponent ready");
 					}
@@ -291,14 +299,16 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == SendMessageButton || evt.getSource() == ChatInputBox){
 			// sending chat message
 			ssm.sendText("chat/" + ChatInputBox.getText());
-			RegularChat.append("\n\nYou:"+ChatInputBox.getText());
+			RegularChat.append("\n\nYou: "+ChatInputBox.getText());
 			ChatInputBox.setText("");
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
 			if(evt.getSource() == SelectionConfirm){
 				// confirming character selected
 				blnPlayready = true;
-				ssm.sendText("redy/.");
+				ssm.sendText("redy/"+gameplayPanel.umarow + gameplayPanel.umacol);
+				intPlaAns[0] = gameplayPanel.umarow;
+				intPlaAns[1] = gameplayPanel.umacol;
 				Readyfield.setText("1/2 players ready!");
 				
 				System.out.println("player ready");
