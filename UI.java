@@ -78,11 +78,16 @@ public class UI implements ActionListener{
 	boolean blnPlayready = false;
 	JTextField Readyfield = new JTextField("0/2 players ready!", SwingConstants.CENTER);
 	
+	int intTurn = 0;
+	
 	//Chat Boxes
-	JTextArea GuessingChat = new JTextArea("guessing will begin below");
+	JTextArea GuessingChat = new JTextArea("questions will begin below");
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
 	JTextField ChatInputBox = new JTextField("");
 	JButton SendMessageButton = new JButton("");
+	
+	JTextField GuessInputBox = new JTextField("");
+	
 	String strNetworkMessage;
 	boolean blnHost = false;
 	int intMessageType = 0;
@@ -216,6 +221,16 @@ public class UI implements ActionListener{
 				}else if(theFrame.getContentPane() == gameplayPanel){
 					}if(intMessageType == 1){
 						RegularChat.append("\n\nOpponent: "+strNetworkMessage);
+					}else if(intMessageType == 2){
+						GuessingChat.append("\n\nOpponent: "+strNetworkMessage);
+					}else if(intMessageType == 8){
+						if(strNetworkMessage.equals("1")){
+							intTurn = 1;
+							GuessInputBox.setEditable(true);
+						}else if(strNetworkMessage.equals("2")){
+							intTurn = 2;
+						}
+						
 					}
 			}catch(NullPointerException e){
 				System.out.println("null pointer exception");
@@ -233,6 +248,10 @@ public class UI implements ActionListener{
 			
 			// Maybe print to screen or give random code for users to join
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
+			
+			intTurn = 1;
+			
+			joinButton.setEnabled(false);
 
 		}else if(evt.getSource() == joinButton){
 			blnHost = false;
@@ -259,6 +278,7 @@ public class UI implements ActionListener{
 					ssm.disconnect();
 					//System.out.println("Disconnected");
 					IPLabel.setText("IP not found; try again");
+					intTurn = 0;
 					break;
 				}else{
 					//System.out.println("Connected");
@@ -270,6 +290,8 @@ public class UI implements ActionListener{
 			
 				System.out.println(blnConnected);
 			}
+			
+			intTurn = 2;
 			
 			//theFrame.setContentPane(selectPanel);
 		}else if(evt.getSource() == testField){
@@ -301,6 +323,24 @@ public class UI implements ActionListener{
 			ssm.sendText("chat/" + ChatInputBox.getText());
 			RegularChat.append("\n\nYou: "+ChatInputBox.getText());
 			ChatInputBox.setText("");
+		}else if(evt.getSource() == GuessInputBox){
+			
+			if(intTurn == 1){
+				// sending guess message
+				ssm.sendText("gues/" + GuessInputBox.getText());
+				GuessingChat.append("\n\nYou: " +GuessInputBox.getText());
+				GuessInputBox.setText("");
+				
+				// sending your turn
+				ssm.sendText("turn/" + intTurn);
+				System.out.println("Turn: " +intTurn);
+				
+				intTurn = 2;
+			}else{
+				GuessInputBox.setEditable(false);
+			}
+			
+			
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
 			if(evt.getSource() == SelectionConfirm){
@@ -701,7 +741,7 @@ public class UI implements ActionListener{
 		RegularChat.setForeground(new Color(69,65,186));
 		gameplayPanel.add(RegularChat);
 		
-		GuessingChat.setBounds(925,31,324,232);
+		GuessingChat.setBounds(925,31,324,192);
 		GuessingChat.setEditable(false);
 		GuessingChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		GuessingChat.setForeground(new Color(69,65,186));
@@ -710,6 +750,10 @@ public class UI implements ActionListener{
 		ChatInputBox.setBounds(936,667,245,34);
 		gameplayPanel.add(ChatInputBox);
 		ChatInputBox.addActionListener(this);
+		
+		GuessInputBox.setBounds(936,227,245,34);
+		gameplayPanel.add(GuessInputBox);
+		GuessInputBox.addActionListener(this);
 		
 		SendMessageButton.setBounds(1206,665,38,38);
 		gameplayPanel.add(SendMessageButton);

@@ -60,8 +60,6 @@ public class JGamePlay extends JPanel{
 		int intGridrow;
 		int intGridcol;
 		
-		
-		
 		strGrid = new String[3][8];		
 		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
 	
@@ -92,6 +90,7 @@ public class JGamePlay extends JPanel{
 			//strUma = strGrid[umarow][umacol];
 		}
 		
+		//g.drawImage(DatabaseAccess.imageloading(yesbutton.PNG), 
 		
 		
 	}

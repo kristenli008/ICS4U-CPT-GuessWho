@@ -4,7 +4,7 @@ public class SocketNetwork{
 	public static int sendingcheck(String strMessage){
 		if(strMessage.startsWith("chat/")){
 			return 1;
-		}else if(strMessage.startsWith("turn/")){
+		}else if(strMessage.startsWith("gues/")){
 			return 2;
 		}else if(strMessage.startsWith("grid/")){
 			return 3;
@@ -16,6 +16,8 @@ public class SocketNetwork{
 			return 6;
 		}else if(strMessage.startsWith("redy/")){
 			return 7;
+		}else if(strMessage.startsWith("turn/")){
+			return 8;
 		}else{
 			return 0;
 		}
