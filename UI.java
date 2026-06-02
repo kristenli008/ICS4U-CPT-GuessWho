@@ -78,8 +78,6 @@ public class UI implements ActionListener{
 	boolean blnPlayready = false;
 	JTextField Readyfield = new JTextField("0/2 players ready!", SwingConstants.CENTER);
 	
-	int intTurn = 0;
-	
 	//Chat Boxes
 	JTextArea GuessingChat = new JTextArea("questions will begin below");
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
@@ -87,6 +85,13 @@ public class UI implements ActionListener{
 	JButton SendMessageButton = new JButton("");
 	
 	JTextField GuessInputBox = new JTextField("");
+	
+	boolean blnAsking;
+	
+	JButton yesButton = new JButton("YES");
+	JButton noButton = new JButton("NO");
+	JButton idkButton = new JButton("IDK");
+	JButton NAButton = new JButton("NOT A QUESTION");
 	
 	String strNetworkMessage;
 	boolean blnHost = false;
@@ -176,6 +181,15 @@ public class UI implements ActionListener{
 				gameplayPanel.add(CellC6);
 				gameplayPanel.add(CellC7);
 				gameplayPanel.add(CellC8);
+				
+				if(blnAsking){
+					GuessInputBox.setEditable(true);
+					enableAnswerButtons(false);
+				}else if(!blnAsking){
+					GuessInputBox.setEditable(false);
+					enableAnswerButtons(false);
+				}
+				
 			}
 		}else if(evt.getSource() == ssm){
 			try{
@@ -222,16 +236,27 @@ public class UI implements ActionListener{
 					}if(intMessageType == 1){
 						RegularChat.append("\n\nOpponent: "+strNetworkMessage);
 					}else if(intMessageType == 2){
+						// Add the message
 						GuessingChat.append("\n\nOpponent: "+strNetworkMessage);
-					}else if(intMessageType == 8){
-						if(strNetworkMessage.equals("1")){
-							intTurn = 1;
-							GuessInputBox.setEditable(true);
-						}else if(strNetworkMessage.equals("2")){
-							intTurn = 2;
+						
+						// Make it so you don't ask again and can only respond
+						blnAsking = false;
+						enableAnswerButtons(true);
+						GuessInputBox.setEditable(false);
+					}else if(intMessageType == 4){
+						
+						// Print the response from the buttons
+						if(strNetworkMessage.equals("YES") || strNetworkMessage.equals("NO") || strNetworkMessage.equals("IDK")){
+							GuessingChat.append("\n\nOpponent answered: " +strNetworkMessage);
+						}else{
+							GuessingChat.append("\n\nOpponent said: Not a valid question");
 						}
 						
+						blnAsking = false;
+						GuessInputBox.setEditable(false);
 					}
+					
+					
 			}catch(NullPointerException e){
 				System.out.println("null pointer exception");
 			}
@@ -248,8 +273,6 @@ public class UI implements ActionListener{
 			
 			// Maybe print to screen or give random code for users to join
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
-			
-			intTurn = 1;
 			
 			joinButton.setEnabled(false);
 
@@ -278,7 +301,6 @@ public class UI implements ActionListener{
 					ssm.disconnect();
 					//System.out.println("Disconnected");
 					IPLabel.setText("IP not found; try again");
-					intTurn = 0;
 					break;
 				}else{
 					//System.out.println("Connected");
@@ -290,8 +312,6 @@ public class UI implements ActionListener{
 			
 				System.out.println(blnConnected);
 			}
-			
-			intTurn = 2;
 			
 			//theFrame.setContentPane(selectPanel);
 		}else if(evt.getSource() == testField){
@@ -325,21 +345,55 @@ public class UI implements ActionListener{
 			ChatInputBox.setText("");
 		}else if(evt.getSource() == GuessInputBox){
 			
-			if(intTurn == 1){
+			if(blnAsking){
 				// sending guess message
 				ssm.sendText("gues/" + GuessInputBox.getText());
 				GuessingChat.append("\n\nYou: " +GuessInputBox.getText());
 				GuessInputBox.setText("");
 				
 				// sending your turn
-				ssm.sendText("turn/" + intTurn);
-				System.out.println("Turn: " +intTurn);
-				
-				intTurn = 2;
+				blnAsking = false;
 			}else{
 				GuessInputBox.setEditable(false);
 			}
 			
+			
+		}else if(evt.getSource() == yesButton){
+			
+			// send the answer "yes" and let you ask a question
+			ssm.sendText("answ/YES");
+			GuessingChat.append("\n\nYou: YES");
+			enableAnswerButtons(false);
+			blnAsking = true;
+			
+			GuessInputBox.setEditable(true);
+			
+		}else if(evt.getSource() == noButton){
+			// send the answer "no" and let you ask a question
+			ssm.sendText("answ/NO");
+			GuessingChat.append("\n\nYou: NO");
+			enableAnswerButtons(false);
+			blnAsking = true;
+			
+			GuessInputBox.setEditable(true);
+			
+		}else if(evt.getSource() == idkButton){
+			// send the answer "IDK" and let you ask a question
+			ssm.sendText("answ/IDK");
+			GuessingChat.append("\n\nYou: IDK");
+			enableAnswerButtons(false);
+			blnAsking = true;
+			
+			GuessInputBox.setEditable(true);
+			
+		}else if(evt.getSource() == NAButton){
+			// send the answer "Not a Question" and let you ask a question
+			ssm.sendText("answ/Not a Question");
+			GuessingChat.append("\n\nYou: Not a Question");
+			enableAnswerButtons(false);
+			blnAsking = true;
+			
+			GuessInputBox.setEditable(true);
 			
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
@@ -352,6 +406,13 @@ public class UI implements ActionListener{
 				Readyfield.setText("1/2 players ready!");
 				
 				System.out.println("player ready");
+				
+				// force host to ask first
+				if(blnHost){
+					blnAsking = true;
+				}else{
+					blnAsking = false;
+				}
 				
 			}else if(evt.getSource() == CellA1){
 				gameplayPanel.umarow = 0;
@@ -755,6 +816,30 @@ public class UI implements ActionListener{
 		gameplayPanel.add(GuessInputBox);
 		GuessInputBox.addActionListener(this);
 		
+		yesButton.setBounds(925,270,75,35);
+		yesButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		yesButton.addActionListener(this);
+		yesButton.setEnabled(false);
+		gameplayPanel.add(yesButton);
+		
+		noButton.setBounds(1005,270,75,35);
+		noButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		noButton.addActionListener(this);
+		noButton.setEnabled(false);
+		gameplayPanel.add(noButton);
+		
+		idkButton.setBounds(1085,270,75,35);
+		idkButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		idkButton.addActionListener(this);
+		idkButton.setEnabled(false);
+		gameplayPanel.add(idkButton);
+		
+		NAButton.setBounds(1165,270,75,35);
+		NAButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		NAButton.addActionListener(this);
+		NAButton.setEnabled(false);
+		gameplayPanel.add(NAButton);
+		
 		SendMessageButton.setBounds(1206,665,38,38);
 		gameplayPanel.add(SendMessageButton);
 		SendMessageButton.addActionListener(this);
@@ -894,7 +979,6 @@ public class UI implements ActionListener{
 		Grid2.setContentAreaFilled(false);
 		Grid2.setBorderPainted(false);
 		
-		
 		SelectionConfirm.setOpaque(false);
 		SelectionConfirm.setContentAreaFilled(false);
 		SelectionConfirm.setBorderPainted(false);
@@ -974,7 +1058,12 @@ public class UI implements ActionListener{
 		new UI();
 	}
 	
-	
+	public void enableAnswerButtons(boolean blnEnabled){
+		yesButton.setEnabled(blnEnabled);
+		noButton.setEnabled(blnEnabled);
+		idkButton.setEnabled(blnEnabled);
+		NAButton.setEnabled(blnEnabled);
+	}
 	
 	
 }
