@@ -66,8 +66,6 @@ public class UI implements ActionListener{
 	JLabel testLabel = new JLabel("");
 	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
 	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
-	JLabel Send = new JLabel("SEND");
-	JLabel Area = new JLabel("AREA");
 	JLabel SelectedUmaPreview = new JLabel("");
 	
 	JTextField testField = new JTextField();
@@ -76,9 +74,9 @@ public class UI implements ActionListener{
 	JTextField GuessInputBox = new JTextField("");
 	
 	JTextArea GuessingChat = new JTextArea("questions will begin below");
+	JScrollPane GuessingScroll = new JScrollPane(GuessingChat);
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
-	
-	//JScrollPane testScroll = new JScrollPane(testArea);
+	JScrollPane ChatScroll = new JScrollPane(RegularChat);
 	
 	// SuperSocketMaster
 	SuperSocketMaster ssm = null;
@@ -110,8 +108,6 @@ public class UI implements ActionListener{
 
 	// timer
 	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
-	
-	
 	
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
@@ -235,9 +231,15 @@ public class UI implements ActionListener{
 				}else if(theFrame.getContentPane() == gameplayPanel){
 					}if(intMessageType == 1){
 						RegularChat.append("\n\nOpponent: "+strNetworkMessage);
+						
+						RegularChat.setCaretPosition(RegularChat.getDocument().getLength());
+						
 					}else if(intMessageType == 2){
 						// Add the message
 						GuessingChat.append("\n\nOpponent: "+strNetworkMessage);
+						
+						// Set the cursor to the bottom of the text area (forces it to the bottom of the text area)
+						GuessingChat.setCaretPosition(GuessingChat.getDocument().getLength());
 						
 						// Make it so you don't ask again and can only respond
 						blnAsking = false;
@@ -247,10 +249,12 @@ public class UI implements ActionListener{
 						
 						// Print the response from the buttons
 						if(strNetworkMessage.equals("YES") || strNetworkMessage.equals("NO") || strNetworkMessage.equals("IDK")){
-							GuessingChat.append("\n\nOpponent answered: " +strNetworkMessage);
+							GuessingChat.append("\nOpponent answered: " +strNetworkMessage);
 						}else{
-							GuessingChat.append("\n\nOpponent said: Not a valid question");
+							GuessingChat.append("\nOpponent said: Not a valid question");
 						}
+						
+						GuessingChat.setCaretPosition(GuessingChat.getDocument().getLength());
 						
 						blnAsking = false;
 						GuessInputBox.setEditable(false);
@@ -343,6 +347,8 @@ public class UI implements ActionListener{
 			ssm.sendText("chat/" + ChatInputBox.getText());
 			RegularChat.append("\n\nYou: "+ChatInputBox.getText());
 			ChatInputBox.setText("");
+			
+			RegularChat.setCaretPosition(RegularChat.getDocument().getLength());
 		}else if(evt.getSource() == GuessInputBox){
 			
 			if(blnAsking){
@@ -350,6 +356,8 @@ public class UI implements ActionListener{
 				ssm.sendText("gues/" + GuessInputBox.getText());
 				GuessingChat.append("\n\nYou: " +GuessInputBox.getText());
 				GuessInputBox.setText("");
+				
+				GuessingChat.setCaretPosition(GuessingChat.getDocument().getLength());
 				
 				// sending your turn
 				blnAsking = false;
@@ -362,7 +370,7 @@ public class UI implements ActionListener{
 			
 			// send the answer "yes" and let you ask a question
 			ssm.sendText("answ/YES");
-			GuessingChat.append("\n\nYou: YES");
+			GuessingChat.append("\nYou: YES");
 			enableAnswerButtons(false);
 			blnAsking = true;
 			
@@ -371,7 +379,7 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == noButton){
 			// send the answer "no" and let you ask a question
 			ssm.sendText("answ/NO");
-			GuessingChat.append("\n\nYou: NO");
+			GuessingChat.append("\nYou: NO");
 			enableAnswerButtons(false);
 			blnAsking = true;
 			
@@ -380,7 +388,7 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == idkButton){
 			// send the answer "IDK" and let you ask a question
 			ssm.sendText("answ/IDK");
-			GuessingChat.append("\n\nYou: IDK");
+			GuessingChat.append("\nYou: IDK");
 			enableAnswerButtons(false);
 			blnAsking = true;
 			
@@ -389,7 +397,7 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == NAButton){
 			// send the answer "Not a Question" and let you ask a question
 			ssm.sendText("answ/Not a Question");
-			GuessingChat.append("\n\nYou: Not a Question");
+			GuessingChat.append("\nYou: Not a Question");
 			enableAnswerButtons(false);
 			blnAsking = true;
 			
@@ -776,12 +784,6 @@ public class UI implements ActionListener{
 		WaitingText.setFont(DatabaseAccess.fontloading("pixelmix.ttf",20));
 		homePanel.add(WaitingText);
 		
-		Send.setBounds(500, 300, 100, 100);
-		//homePanel.add(Send);
-		
-		Area.setBounds(500, 500, 100, 100);
-		//homePanel.add(Area);
-		
 		SelectedUmaPreview.setBounds(1080,375,103,155);
 		selectPanel.add(SelectedUmaPreview);
 		
@@ -796,45 +798,47 @@ public class UI implements ActionListener{
 		gameplayPanel.setPreferredSize(new Dimension(1280,720));
 		
 		//Chat Boxes
-		RegularChat.setBounds(925,317,321,324);
+		ChatScroll.setBounds(925,317,321,324);
+		ChatScroll.setBorder(null);
 		RegularChat.setEditable(false);
 		RegularChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		RegularChat.setForeground(new Color(69,65,186));
-		gameplayPanel.add(RegularChat);
+		gameplayPanel.add(ChatScroll);
 		
-		GuessingChat.setBounds(925,31,324,192);
+		GuessingScroll.setBounds(925,31,324,150);
+		GuessingScroll.setBorder(null);
 		GuessingChat.setEditable(false);
 		GuessingChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		GuessingChat.setForeground(new Color(69,65,186));
-		gameplayPanel.add(GuessingChat);
+		gameplayPanel.add(GuessingScroll);
 		
 		ChatInputBox.setBounds(936,667,245,34);
 		gameplayPanel.add(ChatInputBox);
 		ChatInputBox.addActionListener(this);
 		
-		GuessInputBox.setBounds(936,227,245,34);
+		GuessInputBox.setBounds(936,185,245,34);
 		gameplayPanel.add(GuessInputBox);
 		GuessInputBox.addActionListener(this);
 		
-		yesButton.setBounds(925,270,75,35);
+		yesButton.setBounds(925,225,75,35);
 		yesButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		yesButton.addActionListener(this);
 		yesButton.setEnabled(false);
 		gameplayPanel.add(yesButton);
 		
-		noButton.setBounds(1005,270,75,35);
+		noButton.setBounds(1005,225,75,35);
 		noButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		noButton.addActionListener(this);
 		noButton.setEnabled(false);
 		gameplayPanel.add(noButton);
 		
-		idkButton.setBounds(1085,270,75,35);
+		idkButton.setBounds(1085,225,75,35);
 		idkButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		idkButton.addActionListener(this);
 		idkButton.setEnabled(false);
 		gameplayPanel.add(idkButton);
 		
-		NAButton.setBounds(1165,270,75,35);
+		NAButton.setBounds(1165,225,75,35);
 		NAButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
 		NAButton.addActionListener(this);
 		NAButton.setEnabled(false);
@@ -855,7 +859,6 @@ public class UI implements ActionListener{
 		Grid2.setBounds(482,371,294,135);
 		Grid2.addActionListener(this);
 		gridPanel.add(Grid2);
-		
 		
 		//Character Selection Panel
 		Readyfield.setBounds(440,637,400,28);
@@ -899,99 +902,69 @@ public class UI implements ActionListener{
 		
 		CellA1.setOpaque(false);
 		CellA1.setContentAreaFilled(false);
-		CellA1.setBorderPainted(false);
 		CellA2.setOpaque(false);
 		CellA2.setContentAreaFilled(false);
-		CellA2.setBorderPainted(false);
 		CellA3.setOpaque(false);
 		CellA3.setContentAreaFilled(false);
-		CellA3.setBorderPainted(false);
 		CellA4.setOpaque(false);
 		CellA4.setContentAreaFilled(false);
-		CellA4.setBorderPainted(false);
 		CellA5.setOpaque(false);
 		CellA5.setContentAreaFilled(false);
-		CellA5.setBorderPainted(false);
 		CellA6.setOpaque(false);
 		CellA6.setContentAreaFilled(false);
-		CellA6.setBorderPainted(false);
 		CellA7.setOpaque(false);
 		CellA7.setContentAreaFilled(false);
-		CellA7.setBorderPainted(false);
 		CellA8.setOpaque(false);
 		CellA8.setContentAreaFilled(false);
-		CellA8.setBorderPainted(false);
 		
 		CellB1.setOpaque(false);
 		CellB1.setContentAreaFilled(false);
-		CellB1.setBorderPainted(false);
 		CellB2.setOpaque(false);
 		CellB2.setContentAreaFilled(false);
-		CellB2.setBorderPainted(false);
 		CellB3.setOpaque(false);
 		CellB3.setContentAreaFilled(false);
-		CellB3.setBorderPainted(false);
 		CellB4.setOpaque(false);
 		CellB4.setContentAreaFilled(false);
-		CellB4.setBorderPainted(false);
 		CellB5.setOpaque(false);
 		CellB5.setContentAreaFilled(false);
-		CellB5.setBorderPainted(false);
 		CellB6.setOpaque(false);
 		CellB6.setContentAreaFilled(false);
-		CellB6.setBorderPainted(false);
 		CellB7.setOpaque(false);
 		CellB7.setContentAreaFilled(false);
-		CellB7.setBorderPainted(false);
 		CellB8.setOpaque(false);
 		CellB8.setContentAreaFilled(false);
-		CellB8.setBorderPainted(false);
 		
 		CellC1.setOpaque(false);
 		CellC1.setContentAreaFilled(false);
-		CellC1.setBorderPainted(false);
 		CellC2.setOpaque(false);
 		CellC2.setContentAreaFilled(false);
-		CellC2.setBorderPainted(false);
 		CellC3.setOpaque(false);
 		CellC3.setContentAreaFilled(false);
-		CellC3.setBorderPainted(false);
 		CellC4.setOpaque(false);
 		CellC4.setContentAreaFilled(false);
-		CellC4.setBorderPainted(false);
 		CellC5.setOpaque(false);
 		CellC5.setContentAreaFilled(false);
-		CellC5.setBorderPainted(false);
 		CellC6.setOpaque(false);
 		CellC6.setContentAreaFilled(false);
-		CellC6.setBorderPainted(false);
 		CellC7.setOpaque(false);
 		CellC7.setContentAreaFilled(false);
-		CellC7.setBorderPainted(false);
 		CellC8.setOpaque(false);
 		CellC8.setContentAreaFilled(false);
-		CellC8.setBorderPainted(false);
 		
 		Grid1.setOpaque(false);
 		Grid1.setContentAreaFilled(false);
-		Grid1.setBorderPainted(false);
 		Grid2.setOpaque(false);
 		Grid2.setContentAreaFilled(false);
-		Grid2.setBorderPainted(false);
 		
 		SelectionConfirm.setOpaque(false);
 		SelectionConfirm.setContentAreaFilled(false);
-		SelectionConfirm.setBorderPainted(false);
 		hostButton.setOpaque(false);
 		hostButton.setContentAreaFilled(false);
-		hostButton.setBorderPainted(false);
 		joinButton.setOpaque(false);
 		joinButton.setContentAreaFilled(false);
-		joinButton.setBorderPainted(false);
 		
 		SendMessageButton.setOpaque(false);
 		SendMessageButton.setContentAreaFilled(false);
-		SendMessageButton.setBorderPainted(false);
 		
 		CellA1.addActionListener(this);
 		CellA2.addActionListener(this);
