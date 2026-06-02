@@ -10,8 +10,9 @@ import java.awt.FontMetrics;
 
 public class UI implements ActionListener{
 	// Properties
+	// JFrame
 	JFrame theFrame = new JFrame("Guess Who");
-	//JPanels
+	// JPanels
 	JHomePanel homePanel = new JHomePanel();
 	JGamePlay gameplayPanel = new JGamePlay();
 	JGridChoosing gridPanel = new JGridChoosing();
@@ -22,20 +23,6 @@ public class UI implements ActionListener{
 	JButton joinButton = new JButton("");
 	JButton testbutton = new JButton("Gameplay Screen");
 	
-	// testing
-	JTextField testField = new JTextField();
-	JLabel testLabel = new JLabel("");
-	
-	//JScrollPane testScroll = new JScrollPane(testArea);
-	//Home Screen
-	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
-	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
-	JLabel Send = new JLabel("SEND");
-	JLabel Area = new JLabel("AREA");
-	JLabel SelectedUmaPreview = new JLabel("");
-	SuperSocketMaster ssm = null;
-	
-	//Grid Buttons
 	JButton CellA1 = new JButton("");
 	JButton CellA2 = new JButton("");
 	JButton CellA3 = new JButton("");
@@ -68,47 +55,60 @@ public class UI implements ActionListener{
 	JButton Grid1 = new JButton("");
 	JButton Grid2 = new JButton("");
 	
-	int intCellMarginX=227;
-	int intCellMarginY=148;
-	boolean Gameplay = false;
-	String strGridSelection;
-	
-	boolean blnConnected = false;
-	boolean blnOppready = false;
-	boolean blnPlayready = false;
-	JTextField Readyfield = new JTextField("0/2 players ready!", SwingConstants.CENTER);
-	
-	//Chat Boxes
-	JTextArea GuessingChat = new JTextArea("questions will begin below");
-	JTextArea RegularChat = new JTextArea("chat will begin below.");
-	JTextField ChatInputBox = new JTextField("");
-	JButton SendMessageButton = new JButton("");
-	
-	JTextField GuessInputBox = new JTextField("");
-	
-	boolean blnAsking;
-	
 	JButton yesButton = new JButton("YES");
 	JButton noButton = new JButton("NO");
 	JButton idkButton = new JButton("IDK");
 	JButton NAButton = new JButton("NOT A QUESTION");
 	
-	String strNetworkMessage;
-	boolean blnHost = false;
-	int intMessageType = 0;
+	JButton SendMessageButton = new JButton("");
 	
-	//Images
+	// JLabels, JTextFields, JTextAreas
+	JLabel testLabel = new JLabel("");
+	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
+	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
+	JLabel Send = new JLabel("SEND");
+	JLabel Area = new JLabel("AREA");
+	JLabel SelectedUmaPreview = new JLabel("");
 	
-	//Methods
+	JTextField testField = new JTextField();
+	JTextField Readyfield = new JTextField("0/2 players ready!", SwingConstants.CENTER);
+	JTextField ChatInputBox = new JTextField("");
+	JTextField GuessInputBox = new JTextField("");
 	
-	//Grid
+	JTextArea GuessingChat = new JTextArea("questions will begin below");
+	JTextArea RegularChat = new JTextArea("chat will begin below.");
+	
+	//JScrollPane testScroll = new JScrollPane(testArea);
+	
+	// SuperSocketMaster
+	SuperSocketMaster ssm = null;
+	
+	// integers, doubles
+	int intCellMarginX=227;
+	int intCellMarginY=148;
 	int intGrid = 0;
 	// opponent's selected character; player must guess
 	int[] intOppAns = new int[2];
 	// player's selected character; opponent must guess
 	int[] intPlaAns = new int[2];
+	int intMessageType = 0;
 	
-	//Timer
+	// strings
+	String strGridSelection;
+	String strNetworkMessage;
+	
+	// booleans
+	boolean Gameplay = false;
+	
+	boolean blnConnected = false;
+	boolean blnOppready = false;
+	boolean blnPlayready = false;
+	
+	boolean blnAsking;
+	
+	boolean blnHost = false;
+
+	// timer
 	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
 	
 	
