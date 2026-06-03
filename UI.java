@@ -62,6 +62,8 @@ public class UI implements ActionListener{
 	
 	JButton SendMessageButton = new JButton("");
 	
+	JButton guessButton = new JButton("READY TO GUESS");
+	
 	// JLabels, JTextFields, JTextAreas
 	JLabel testLabel = new JLabel("");
 	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
@@ -178,12 +180,14 @@ public class UI implements ActionListener{
 				gameplayPanel.add(CellC7);
 				gameplayPanel.add(CellC8);
 				
-				if(blnAsking){
+				if(blnAsking == true){
 					GuessInputBox.setEditable(true);
 					enableAnswerButtons(false);
-				}else if(!blnAsking){
+					guessButton.setEnabled(true);
+				}else if(blnAsking == false){
 					GuessInputBox.setEditable(false);
 					enableAnswerButtons(false);
+					guessButton.setEnabled(false);
 				}
 				
 			}
@@ -258,6 +262,8 @@ public class UI implements ActionListener{
 						
 						blnAsking = false;
 						GuessInputBox.setEditable(false);
+					}else if(intMessageType == 8){
+						
 					}
 					
 					
@@ -353,7 +359,7 @@ public class UI implements ActionListener{
 			
 			if(blnAsking){
 				// sending guess message
-				ssm.sendText("gues/" + GuessInputBox.getText());
+				ssm.sendText("ques/" + GuessInputBox.getText());
 				GuessingChat.append("\n\nYou: " +GuessInputBox.getText());
 				GuessInputBox.setText("");
 				
@@ -361,9 +367,14 @@ public class UI implements ActionListener{
 				
 				// sending your turn
 				blnAsking = false;
+				guessButton.setEnabled(false);
 			}else{
 				GuessInputBox.setEditable(false);
 			}
+			
+			
+		}else if(evt.getSource() == guessButton){
+			
 			
 			
 		}else if(evt.getSource() == yesButton){
@@ -373,6 +384,7 @@ public class UI implements ActionListener{
 			GuessingChat.append("\nYou: YES");
 			enableAnswerButtons(false);
 			blnAsking = true;
+			guessButton.setEnabled(true);
 			
 			GuessInputBox.setEditable(true);
 			
@@ -382,6 +394,7 @@ public class UI implements ActionListener{
 			GuessingChat.append("\nYou: NO");
 			enableAnswerButtons(false);
 			blnAsking = true;
+			guessButton.setEnabled(true);
 			
 			GuessInputBox.setEditable(true);
 			
@@ -391,6 +404,7 @@ public class UI implements ActionListener{
 			GuessingChat.append("\nYou: IDK");
 			enableAnswerButtons(false);
 			blnAsking = true;
+			guessButton.setEnabled(true);
 			
 			GuessInputBox.setEditable(true);
 			
@@ -400,6 +414,7 @@ public class UI implements ActionListener{
 			GuessingChat.append("\nYou: Not a Question");
 			enableAnswerButtons(false);
 			blnAsking = true;
+			guessButton.setEnabled(true);
 			
 			GuessInputBox.setEditable(true);
 			
@@ -847,6 +862,15 @@ public class UI implements ActionListener{
 		SendMessageButton.setBounds(1206,665,38,38);
 		gameplayPanel.add(SendMessageButton);
 		SendMessageButton.addActionListener(this);
+		
+		
+		guessButton.setBounds(564,65,240,61);
+		guessButton.addActionListener(this);
+		guessButton.setOpaque(false);
+		guessButton.setContentAreaFilled(false);
+		guessButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",18));
+		guessButton.setForeground(Color.WHITE);
+		gameplayPanel.add(guessButton);
 		
 		//Grid Selection Panel
 		gridPanel.setLayout(null);
