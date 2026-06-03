@@ -260,9 +260,11 @@ public class UI implements ActionListener{
 						blnAsking = false;
 						GuessInputBox.setEditable(false);
 					}else if(intMessageType == 5){
-						System.out.println(strNetworkMessage);
-						
-						
+						if(strNetworkMessage.equals("y")){
+							ssm.disconnect();
+						}else if(strNetworkMessage.equals("n")){
+							blnAsking = false;
+						}
 					}else if(intMessageType == 8){
 						if(strNetworkMessage.startsWith(Integer.toString(gameplayPanel.umarow)) && strNetworkMessage.endsWith(Integer.toString(gameplayPanel.umacol))){
 							ssm.sendText("wilo/y");
