@@ -70,6 +70,7 @@ public class UI implements ActionListener{
 	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
 	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
 	JLabel SelectedUmaPreview = new JLabel("");
+	JLabel wiloanswer = new JLabel("",SwingConstants.CENTER);
 	
 	JTextField testField = new JTextField();
 	JLabel Readyfield = new JLabel("0/2 players ready!", SwingConstants.CENTER);
@@ -100,6 +101,7 @@ public class UI implements ActionListener{
 	String strGridSelection;
 	String strNetworkMessage;
 	String strRowLetter;
+	String strUmaName;
 	
 	// booleans
 	boolean Gameplay = false;
@@ -266,14 +268,27 @@ public class UI implements ActionListener{
 						GuessInputBox.setEditable(false);
 					}else if(intMessageType == 5){
 						if(strNetworkMessage.equals("y")){
+							// player guessed correctly
 							ssm.disconnect();
+							theFrame.setContentPane(winPanel);
+							strUmaName = gameplayPanel.strGrid[intOppAns[0]][intOppAns[1]];
+							wiloanswer.setForeground(new Color(102,94,235));
+							wiloanswer.setText("you guessed the opponent's uma, "+strUmaName);
 						}else if(strNetworkMessage.equals("n")){
+							// player guessed incorrectly
 							blnAsking = false;
 						}
 					}else if(intMessageType == 8){
 						if(strNetworkMessage.startsWith(Integer.toString(gameplayPanel.umarow)) && strNetworkMessage.endsWith(Integer.toString(gameplayPanel.umacol))){
+							// opponent guessed correctly
 							ssm.sendText("wilo/y");
+							ssm.disconnect();
+							theFrame.setContentPane(losePanel);
+							strUmaName = gameplayPanel.strGrid[gameplayPanel.umarow][gameplayPanel.umacol];
+							wiloanswer.setForeground(new Color(231,60,100));
+							wiloanswer.setText("your opponent guessed your uma, "+strUmaName);
 						}else{
+							// opponent guessed incorrectly
 							ssm.sendText("wilo/n");
 						}
 					}
@@ -872,11 +887,15 @@ public class UI implements ActionListener{
 		homePanel.setPreferredSize(new Dimension(1280,720));
 		theFrame.setContentPane(homePanel);
 		
+		// win / loss panels
 		winPanel.setLayout(null);
 		winPanel.setPreferredSize(new Dimension(1280,720));
 		
 		losePanel.setLayout(null);
 		losePanel.setPreferredSize(new Dimension(1280,720));
+		
+		wiloanswer.setBounds(1280,108,0,431);
+		wiloanswer.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
 		
 		// Can change coordinates later
 		hostButton.setBounds(438, 462, 195, 75);
