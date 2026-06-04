@@ -65,6 +65,8 @@ public class UI implements ActionListener{
 	
 	JButton guessButton = new JButton("READY TO GUESS");
 	
+	JButton returnButton = new JButton("");
+	
 	// JLabels, JTextFields, JTextAreas
 	JLabel testLabel = new JLabel("");
 	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
@@ -271,6 +273,8 @@ public class UI implements ActionListener{
 							// player guessed correctly
 							ssm.disconnect();
 							theFrame.setContentPane(winPanel);
+							winPanel.add(returnButton);
+							theFrame.pack();
 							strUmaName = gameplayPanel.strGrid[intOppAns[0]][intOppAns[1]];
 							wiloanswer.setForeground(new Color(102,94,235));
 							wiloanswer.setText("you guessed the opponent's uma, "+strUmaName);
@@ -284,6 +288,8 @@ public class UI implements ActionListener{
 							ssm.sendText("wilo/y");
 							ssm.disconnect();
 							theFrame.setContentPane(losePanel);
+							losePanel.add(returnButton);
+							theFrame.pack();
 							strUmaName = gameplayPanel.strGrid[gameplayPanel.umarow][gameplayPanel.umacol];
 							wiloanswer.setForeground(new Color(231,60,100));
 							wiloanswer.setText("your opponent guessed your uma, "+strUmaName);
@@ -351,6 +357,9 @@ public class UI implements ActionListener{
 			}
 			
 			//theFrame.setContentPane(selectPanel);
+		}else if(evt.getSource() == returnButton){
+			theFrame.setContentPane(homePanel);
+			theFrame.pack();
 		}else if(evt.getSource() == testField){
 			ssm.sendText(testField.getText());
 			testField.setText("");
@@ -894,6 +903,9 @@ public class UI implements ActionListener{
 		losePanel.setLayout(null);
 		losePanel.setPreferredSize(new Dimension(1280,720));
 		
+		returnButton.setBounds(1114,612,120,62);
+		returnButton.addActionListener(this);
+		
 		wiloanswer.setBounds(1280,108,0,431);
 		wiloanswer.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
 		
@@ -1116,6 +1128,9 @@ public class UI implements ActionListener{
 		
 		SendMessageButton.setOpaque(false);
 		SendMessageButton.setContentAreaFilled(false);
+		
+		returnButton.setOpaque(false);
+		returnButton.setContentAreaFilled(false);
 		
 		CellA1.addActionListener(this);
 		CellA2.addActionListener(this);
