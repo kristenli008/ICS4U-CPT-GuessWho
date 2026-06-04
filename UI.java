@@ -91,10 +91,13 @@ public class UI implements ActionListener{
 	// player's selected character; opponent must guess
 	int[] intPlaAns = new int[2];
 	int intMessageType = 0;
+	int intCountRow = 0;
+	int intCountCol = 0;
 	
 	// strings
 	String strGridSelection;
 	String strNetworkMessage;
+	String strRowLetter;
 	
 	// booleans
 	boolean Gameplay = false;
@@ -834,6 +837,32 @@ public class UI implements ActionListener{
 		}
 	}
 	
+	// button making
+	
+	
+	// button settings
+	public void buttonsettings(JButton button, JPanel panel){
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.addActionListener(this);
+		panel.add(button);
+	}
+	
+	
+	// button opening and closing
+	public void buttonopenclose(JButton button, int introw, int intcol){
+		
+	}
+	
+	// button enabling
+	public void enableAnswerButtons(boolean blnEnabled){
+		yesButton.setEnabled(blnEnabled);
+		noButton.setEnabled(blnEnabled);
+		idkButton.setEnabled(blnEnabled);
+		NAButton.setEnabled(blnEnabled);
+	}
+	
+	
 	// Constructor
 	public UI(){
 		// homePanel
@@ -1111,12 +1140,32 @@ public class UI implements ActionListener{
 		selectPanel.add(CellC7);
 		selectPanel.add(CellC8);
 
+
+		// using for loop to set button settings
+		for(intCountRow = 0; intCountRow < 3; intCountRow++){
+			if(intCountRow == 0){
+				strRowLetter = "A";
+			}else if(intCountRow == 1){
+				strRowLetter = "B";
+			}else if(intCountRow == 2){
+				strRowLetter = "C";
+			}
+			
+			for(intCountCol = 0; intCountCol < 9; intCountCol++){
+				JButton defaultbutton = new JButton("");
+				buttonsettings(defaultbutton,selectPanel);
+				defaultbutton.setName("Cell"+strRowLetter+intCountCol);
+			}
+		}
+
+
 		// JFrame
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
 		theFrame.pack();
 		theFrame.setVisible(true);
 		
+		// starting timer
 		Timer.start();
 		
 	}  
@@ -1124,13 +1173,6 @@ public class UI implements ActionListener{
 	// Main Method
 	public static void main(String[] args){
 		new UI();
-	}
-	
-	public void enableAnswerButtons(boolean blnEnabled){
-		yesButton.setEnabled(blnEnabled);
-		noButton.setEnabled(blnEnabled);
-		idkButton.setEnabled(blnEnabled);
-		NAButton.setEnabled(blnEnabled);
 	}
 	
 	
