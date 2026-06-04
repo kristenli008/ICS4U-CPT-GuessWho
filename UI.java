@@ -70,7 +70,7 @@ public class UI implements ActionListener{
 	JLabel SelectedUmaPreview = new JLabel("");
 	
 	JTextField testField = new JTextField();
-	JTextField Readyfield = new JTextField("0/2 players ready!", SwingConstants.CENTER);
+	JLabel Readyfield = new JLabel("0/2 players ready!", SwingConstants.CENTER);
 	JTextField ChatInputBox = new JTextField("");
 	JTextField GuessInputBox = new JTextField("");
 	
@@ -860,12 +860,12 @@ public class UI implements ActionListener{
 		//testScroll.setBounds(650, 500, 330, 100);
 		//homePanel.add(testScroll);
 		
-		IPLabel.setBounds(437,584,405,50);
+		IPLabel.setBounds(0,584,1280,50);
 		IPLabel.setForeground(new Color(80,73,255));
 		IPLabel.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
 		homePanel.add(IPLabel);
 		
-		WaitingText.setBounds(437,630,405,50);
+		WaitingText.setBounds(0,630,1280,50);
 		WaitingText.setForeground(new Color(69,171,242));
 		WaitingText.setFont(DatabaseAccess.fontloading("pixelmix.ttf",20));
 		homePanel.add(WaitingText);
@@ -956,9 +956,9 @@ public class UI implements ActionListener{
 		gridPanel.add(Grid2);
 		
 		//Character Selection Panel
-		Readyfield.setBounds(440,637,400,28);
-		Readyfield.setEditable(false);
-		Readyfield.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		Readyfield.setBounds(0,637,1280,28);
+		//Readyfield.setEditable(false);
+		Readyfield.setFont(DatabaseAccess.fontloading("pixelmix.ttf",20));
 		Readyfield.setForeground(new Color(69,171,242));
 		selectPanel.add(Readyfield);
 		
