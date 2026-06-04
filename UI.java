@@ -95,6 +95,10 @@ public class UI implements ActionListener{
 	int[] intOppAns = new int[2];
 	// player's selected character; opponent must guess
 	int[] intPlaAns = new int[2];
+	// player's guess
+	int[] intPlaGuess = new int[2];
+	// opponent's guess
+	int[] intOppGuess = new int[2];
 	int intMessageType = 0;
 	int intCountRow = 0;
 	int intCountCol = 0;
@@ -269,33 +273,38 @@ public class UI implements ActionListener{
 						blnAsking = false;
 						GuessInputBox.setEditable(false);
 					}else if(intMessageType == 5){
+						strUmaName = gameplayPanel.strGrid[intPlaGuess[0]][intPlaGuess[1]];
 						if(strNetworkMessage.equals("y")){
 							// player guessed correctly
 							ssm.disconnect();
 							theFrame.setContentPane(winPanel);
 							winPanel.add(returnButton);
 							theFrame.pack();
-							strUmaName = gameplayPanel.strGrid[intOppAns[0]][intOppAns[1]];
 							wiloanswer.setForeground(new Color(102,94,235));
 							wiloanswer.setText("you guessed the opponent's uma, "+strUmaName);
 						}else if(strNetworkMessage.equals("n")){
 							// player guessed incorrectly
+							GuessingChat.append("\nYour guess of "+strUmaName+" is incorrect!");
 							blnAsking = false;
 						}
 					}else if(intMessageType == 8){
-						if(strNetworkMessage.startsWith(Integer.toString(gameplayPanel.umarow)) && strNetworkMessage.endsWith(Integer.toString(gameplayPanel.umacol))){
+						intOppGuess[0] = Integer.parseInt(strNetworkMessage.substring(0,1));
+						intOppGuess[1] = Integer.parseInt(strNetworkMessage.substring(2,3));
+						strUmaName = gameplayPanel.strGrid[intOppGuess[0]][intOppGuess[1]];
+						if(intOppGuess[0] == gameplayPanel.umarow && intOppGuess[1] == gameplayPanel.umacol){
 							// opponent guessed correctly
 							ssm.sendText("wilo/y");
 							ssm.disconnect();
 							theFrame.setContentPane(losePanel);
 							losePanel.add(returnButton);
 							theFrame.pack();
-							strUmaName = gameplayPanel.strGrid[gameplayPanel.umarow][gameplayPanel.umacol];
 							wiloanswer.setForeground(new Color(231,60,100));
 							wiloanswer.setText("your opponent guessed your uma, "+strUmaName);
 						}else{
 							// opponent guessed incorrectly
 							ssm.sendText("wilo/n");
+							GuessingChat.append("\nThe opponent guessed "+strUmaName+" incorrectly!");
+							blnAsking = true;
 						}
 					}
 					
@@ -573,6 +582,8 @@ public class UI implements ActionListener{
 		}else if(theFrame.getContentPane() == gameplayPanel){
 			if(evt.getSource() == CellA1){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 0;
 					ssm.sendText("gues/0|0");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA1OPEN ==true){
@@ -585,6 +596,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA2){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 1;
 					ssm.sendText("gues/0|1");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA2OPEN ==true){
@@ -597,6 +610,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA3){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 2;
 					ssm.sendText("gues/0|2");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA3OPEN ==true){
@@ -609,6 +624,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA4){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 3;
 					ssm.sendText("gues/0|3");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA4OPEN ==true){
@@ -621,6 +638,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA5){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 4;
 					ssm.sendText("gues/0|4");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA5OPEN ==true){
@@ -633,6 +652,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA6){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 5;
 					ssm.sendText("gues/0|5");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA6OPEN ==true){
@@ -645,6 +666,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA7){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 6;
 					ssm.sendText("gues/0|6");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA7OPEN ==true){
@@ -657,6 +680,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellA8){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 0;
+					intPlaGuess[1] = 7;
 					ssm.sendText("gues/0|7");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA8OPEN ==true){
@@ -669,6 +694,8 @@ public class UI implements ActionListener{
 	//ROW 2 BUTTONS
 			}else if(evt.getSource() == CellB1){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 0;
 					ssm.sendText("gues/1|0");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB1OPEN ==true){
@@ -681,6 +708,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB2){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 1;
 					ssm.sendText("gues/1|1");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB2OPEN ==true){
@@ -693,6 +722,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB3){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 2;
 					ssm.sendText("gues/1|2");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB3OPEN ==true){
@@ -705,6 +736,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB4){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 3;
 					ssm.sendText("gues/1|3");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB4OPEN ==true){
@@ -717,6 +750,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB5){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 4;
 					ssm.sendText("gues/1|4");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB5OPEN ==true){
@@ -729,6 +764,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB6){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 5;
 					ssm.sendText("gues/1|5");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB6OPEN ==true){
@@ -741,6 +778,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB7){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 6;
 					ssm.sendText("gues/1|6");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB7OPEN ==true){
@@ -753,6 +792,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellB8){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 1;
+					intPlaGuess[1] = 7;
 					ssm.sendText("gues/1|7");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB8OPEN ==true){
@@ -765,6 +806,8 @@ public class UI implements ActionListener{
 	//ROW 3 BUTTONS
 			}else if(evt.getSource() == CellC1){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 0;
 					ssm.sendText("gues/2|0");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC1OPEN ==true){
@@ -777,6 +820,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC2){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 1;
 					ssm.sendText("gues/2|1");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC2OPEN ==true){
@@ -789,6 +834,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC3){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 2;
 					ssm.sendText("gues/2|2");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC3OPEN ==true){
@@ -801,6 +848,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC4){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 3;
 					ssm.sendText("gues/2|3");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC4OPEN ==true){
@@ -813,6 +862,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC5){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 4;
 					ssm.sendText("gues/2|4");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC5OPEN ==true){
@@ -825,6 +876,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC6){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 5;
 					ssm.sendText("gues/2|5");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC6OPEN ==true){
@@ -837,6 +890,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC7){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 6;
 					ssm.sendText("gues/2|6");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC7OPEN ==true){
@@ -849,6 +904,8 @@ public class UI implements ActionListener{
 
 			}else if(evt.getSource() == CellC8){
 				if(blnGuessing == true){
+					intPlaGuess[0] = 2;
+					intPlaGuess[1] = 7;
 					ssm.sendText("gues/2|7");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC8OPEN ==true){
