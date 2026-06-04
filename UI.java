@@ -17,6 +17,8 @@ public class UI implements ActionListener{
 	JGamePlay gameplayPanel = new JGamePlay();
 	JGridChoosing gridPanel = new JGridChoosing();
 	JSelectionScreen selectPanel = new JSelectionScreen();
+	JWinScreen winPanel = new JWinScreen();
+	JLoseScreen losePanel = new JLoseScreen();
 	
 	// JButtons
 	JButton hostButton = new JButton("");
@@ -869,6 +871,12 @@ public class UI implements ActionListener{
 		homePanel.setLayout(null);
 		homePanel.setPreferredSize(new Dimension(1280,720));
 		theFrame.setContentPane(homePanel);
+		
+		winPanel.setLayout(null);
+		winPanel.setPreferredSize(new Dimension(1280,720));
+		
+		losePanel.setLayout(null);
+		losePanel.setPreferredSize(new Dimension(1280,720));
 		
 		// Can change coordinates later
 		hostButton.setBounds(438, 462, 195, 75);
