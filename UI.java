@@ -281,7 +281,7 @@ public class UI implements ActionListener{
 							winPanel.add(returnButton);
 							wiloanswer.setForeground(new Color(102,94,235));
 							wiloanswer.setText("you guessed the opponent's uma, "+strUmaName);
-							winPanel.strUmaname = strUmaName;
+							winPanel.strUmaName = strUmaName;
 							winPanel.add(wiloanswer);
 							theFrame.pack();
 						}else if(strNetworkMessage.equals("n")){
@@ -301,7 +301,7 @@ public class UI implements ActionListener{
 							losePanel.add(returnButton);
 							wiloanswer.setForeground(new Color(231,60,100));
 							wiloanswer.setText("your opponent guessed your uma, "+strUmaName+"!");
-							losePanel.strUmaname = strUmaName;
+							losePanel.strUmaName = strUmaName;
 							theFrame.add(losePanel);
 							theFrame.pack();
 						}else{
