@@ -79,7 +79,7 @@ public class UI implements ActionListener{
 	JTextField ChatInputBox = new JTextField("");
 	JTextField GuessInputBox = new JTextField("");
 	
-	JTextArea GuessingChat = new JTextArea("questions will begin below");
+	JTextArea GuessingChat = new JTextArea("questions will begin below.");
 	JScrollPane GuessingScroll = new JScrollPane(GuessingChat);
 	JTextArea RegularChat = new JTextArea("chat will begin below.");
 	JScrollPane ChatScroll = new JScrollPane(RegularChat);
@@ -924,21 +924,10 @@ public class UI implements ActionListener{
 		}
 	}
 	
-	// button making
-	
-	
-	// button settings
-	public void buttonsettings(JButton button, JPanel panel){
-		button.setOpaque(false);
-		button.setContentAreaFilled(false);
-		button.addActionListener(this);
-		panel.add(button);
-	}
-	
-	
-	// button opening and closing
-	public void buttonopenclose(JButton button, int introw, int intcol){
-		
+	// game resetting
+	public void gamereset(){
+		RegularChat.setText("chat will begin below.");
+		GuessingChat.setText("questions will begin below.");
 	}
 	
 	// button enabling
@@ -1175,6 +1164,29 @@ public class UI implements ActionListener{
 		CellC8.setOpaque(false);
 		CellC8.setContentAreaFilled(false);
 		
+		CellA1.setBorderPainted(false);
+		CellA2.setBorderPainted(false);
+		CellA3.setBorderPainted(false);
+		CellA4.setBorderPainted(false);
+		CellA5.setBorderPainted(false);
+		CellA6.setBorderPainted(false);
+		CellA7.setBorderPainted(false);
+		CellA8.setBorderPainted(false);
+		CellB1.setBorderPainted(false);
+		CellB2.setBorderPainted(false);
+		CellB3.setBorderPainted(false);
+		CellB4.setBorderPainted(false);
+		CellB5.setBorderPainted(false);
+		CellB6.setBorderPainted(false);
+		CellB7.setBorderPainted(false);
+		CellB8.setBorderPainted(false);
+		CellC1.setBorderPainted(false);
+		CellC2.setBorderPainted(false);
+		CellC3.setBorderPainted(false);
+		CellC4.setBorderPainted(false);
+		CellC5.setBorderPainted(false);
+		CellC6.setBorderPainted(false);
+		CellC7.setBorderPainted(false);
 		CellC8.setBorderPainted(false);
 		
 		Grid1.setOpaque(false);
@@ -1244,24 +1256,6 @@ public class UI implements ActionListener{
 		selectPanel.add(CellC6);
 		selectPanel.add(CellC7);
 		selectPanel.add(CellC8);
-
-
-		// using for loop to set button settings
-		for(intCountRow = 0; intCountRow < 3; intCountRow++){
-			if(intCountRow == 0){
-				strRowLetter = "A";
-			}else if(intCountRow == 1){
-				strRowLetter = "B";
-			}else if(intCountRow == 2){
-				strRowLetter = "C";
-			}
-			
-			for(intCountCol = 0; intCountCol < 9; intCountCol++){
-				JButton defaultbutton = new JButton("");
-				buttonsettings(defaultbutton,selectPanel);
-				defaultbutton.setName("Cell"+strRowLetter+intCountCol);
-			}
-		}
 
 
 		// JFrame
