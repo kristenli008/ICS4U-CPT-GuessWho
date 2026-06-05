@@ -288,7 +288,10 @@ public class UI implements ActionListener{
 						}else if(strNetworkMessage.equals("n")){
 							// player guessed incorrectly
 							GuessingChat.append("\nYour guess of "+strUmaName+" is incorrect!");
+							
 							blnAsking = false;
+							guessButton.setEnabled(false);
+							GuessInputBox.setEditable(false);
 						}
 					}else if(intMessageType == 8){
 						intOppGuess[0] = Integer.parseInt(strNetworkMessage.substring(0,1));
@@ -310,7 +313,7 @@ public class UI implements ActionListener{
 							// opponent guessed incorrectly
 							ssm.sendText("wilo/n");
 							GuessingChat.append("\nThe opponent guessed "+strUmaName+" incorrectly!");
-							blnAsking = true;
+							playerturn();
 						}
 					}
 					
