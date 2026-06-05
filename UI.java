@@ -284,6 +284,7 @@ public class UI implements ActionListener{
 							winPanel.strUmaName = strUmaName;
 							winPanel.add(wiloanswer);
 							theFrame.pack();
+							gamereset();
 						}else if(strNetworkMessage.equals("n")){
 							// player guessed incorrectly
 							GuessingChat.append("\nYour guess of "+strUmaName+" is incorrect!");
@@ -304,6 +305,7 @@ public class UI implements ActionListener{
 							losePanel.strUmaName = strUmaName;
 							losePanel.add(wiloanswer);
 							theFrame.pack();
+							gamereset();
 						}else{
 							// opponent guessed incorrectly
 							ssm.sendText("wilo/n");
@@ -427,41 +429,25 @@ public class UI implements ActionListener{
 			// send the answer "yes" and let you ask a question
 			ssm.sendText("answ/YES");
 			GuessingChat.append("\nYou: YES");
-			enableAnswerButtons(false);
-			blnAsking = true;
-			guessButton.setEnabled(true);
-			
-			GuessInputBox.setEditable(true);
+			playerturn();
 			
 		}else if(evt.getSource() == noButton){
 			// send the answer "no" and let you ask a question
 			ssm.sendText("answ/NO");
 			GuessingChat.append("\nYou: NO");
-			enableAnswerButtons(false);
-			blnAsking = true;
-			guessButton.setEnabled(true);
-			
-			GuessInputBox.setEditable(true);
+			playerturn();
 			
 		}else if(evt.getSource() == idkButton){
 			// send the answer "IDK" and let you ask a question
 			ssm.sendText("answ/IDK");
 			GuessingChat.append("\nYou: IDK");
-			enableAnswerButtons(false);
-			blnAsking = true;
-			guessButton.setEnabled(true);
-			
-			GuessInputBox.setEditable(true);
+			playerturn();
 			
 		}else if(evt.getSource() == NAButton){
 			// send the answer "Not a Question" and let you ask a question
 			ssm.sendText("answ/Not a Question");
 			GuessingChat.append("\nYou: Not a Question");
-			enableAnswerButtons(false);
-			blnAsking = true;
-			guessButton.setEnabled(true);
-			
-			GuessInputBox.setEditable(true);
+			playerturn();
 			
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
@@ -936,6 +922,15 @@ public class UI implements ActionListener{
 		noButton.setEnabled(blnEnabled);
 		idkButton.setEnabled(blnEnabled);
 		NAButton.setEnabled(blnEnabled);
+	}
+	
+	// switching to player turn (on player's end)
+	public void playerturn(){
+		enableAnswerButtons(false);
+		blnAsking = true;
+		guessButton.setEnabled(true);
+		
+		GuessInputBox.setEditable(true);
 	}
 	
 	
