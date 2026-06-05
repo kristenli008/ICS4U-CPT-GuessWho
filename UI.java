@@ -302,7 +302,7 @@ public class UI implements ActionListener{
 							wiloanswer.setForeground(new Color(231,60,100));
 							wiloanswer.setText("your opponent guessed your uma, "+strUmaName+"!");
 							losePanel.strUmaName = strUmaName;
-							theFrame.add(wiloanswer );
+							losePanel.add(wiloanswer);
 							theFrame.pack();
 						}else{
 							// opponent guessed incorrectly
@@ -967,7 +967,7 @@ public class UI implements ActionListener{
 		returnButton.setBounds(1114,612,120,62);
 		returnButton.addActionListener(this);
 		
-		wiloanswer.setBounds(1280,108,0,431);
+		wiloanswer.setBounds(0,108,1280,431);
 		wiloanswer.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
 		
 		// Can change coordinates later

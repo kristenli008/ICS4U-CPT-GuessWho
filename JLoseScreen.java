@@ -12,7 +12,7 @@ public class JLoseScreen extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(DatabaseAccess.imageloading("losescreen"),0,0,null);
-		g.drawImage(DatabaseAccess.imageloading(strUmaName),589,282,null);
+		g.drawImage(DatabaseAccess.imageloading(strUmaName),589,252,null);
 	}
 	
 	//Constructor
