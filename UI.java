@@ -1175,6 +1175,8 @@ public class UI implements ActionListener{
 		CellC8.setOpaque(false);
 		CellC8.setContentAreaFilled(false);
 		
+		CellC8.setBorderPainted(false);
+		
 		Grid1.setOpaque(false);
 		Grid1.setContentAreaFilled(false);
 		Grid2.setOpaque(false);
