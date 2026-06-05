@@ -302,7 +302,7 @@ public class UI implements ActionListener{
 							wiloanswer.setForeground(new Color(231,60,100));
 							wiloanswer.setText("your opponent guessed your uma, "+strUmaName+"!");
 							losePanel.strUmaName = strUmaName;
-							theFrame.add(losePanel);
+							theFrame.add(wiloanswer );
 							theFrame.pack();
 						}else{
 							// opponent guessed incorrectly
