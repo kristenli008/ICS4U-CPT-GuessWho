@@ -280,7 +280,7 @@ public class UI implements ActionListener{
 							theFrame.setContentPane(winPanel);
 							winPanel.add(returnButton);
 							wiloanswer.setForeground(new Color(102,94,235));
-							wiloanswer.setText("you guessed the opponent's uma, "+strUmaName);
+							wiloanswer.setText("you guessed the opponent's uma, "+strUmaName+"!");
 							winPanel.strUmaName = strUmaName;
 							winPanel.add(wiloanswer);
 							theFrame.pack();
@@ -967,7 +967,7 @@ public class UI implements ActionListener{
 		returnButton.setBounds(1114,612,120,62);
 		returnButton.addActionListener(this);
 		
-		wiloanswer.setBounds(0,108,1280,431);
+		wiloanswer.setBounds(0,431,1280,108);
 		wiloanswer.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
 		
 		// Can change coordinates later
