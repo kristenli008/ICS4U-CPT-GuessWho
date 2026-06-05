@@ -917,6 +917,31 @@ public class UI implements ActionListener{
 	public void gamereset(){
 		RegularChat.setText("chat will begin below.");
 		GuessingChat.setText("questions will begin below.");
+		
+		gameplayPanel.CellA1OPEN= true;
+		gameplayPanel.CellA2OPEN= true;
+		gameplayPanel.CellA3OPEN= true;
+		gameplayPanel.CellA4OPEN= true;
+		gameplayPanel.CellA5OPEN= true;
+		gameplayPanel.CellA6OPEN= true;
+		gameplayPanel.CellA7OPEN= true;
+		gameplayPanel.CellA8OPEN= true;
+		gameplayPanel.CellB1OPEN= true;
+		gameplayPanel.CellB2OPEN= true;
+		gameplayPanel.CellB3OPEN= true;
+		gameplayPanel.CellB4OPEN= true;
+		gameplayPanel.CellB5OPEN= true;
+		gameplayPanel.CellB6OPEN= true;
+		gameplayPanel.CellB7OPEN= true;
+		gameplayPanel.CellB8OPEN= true;
+		gameplayPanel.CellC1OPEN= true;
+		gameplayPanel.CellC2OPEN= true;
+		gameplayPanel.CellC3OPEN= true;
+		gameplayPanel.CellC4OPEN= true;
+		gameplayPanel.CellC5OPEN= true;
+		gameplayPanel.CellC6OPEN= true;
+		gameplayPanel.CellC7OPEN= true;
+		gameplayPanel.CellC8OPEN= true;
 	}
 	
 	// button enabling
@@ -1055,6 +1080,7 @@ public class UI implements ActionListener{
 		guessButton.addActionListener(this);
 		guessButton.setOpaque(false);
 		guessButton.setContentAreaFilled(false);
+		guessButton.setBorderPainted(false);
 		guessButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",18));
 		guessButton.setForeground(Color.WHITE);
 		gameplayPanel.add(guessButton);
@@ -1189,21 +1215,28 @@ public class UI implements ActionListener{
 		
 		Grid1.setOpaque(false);
 		Grid1.setContentAreaFilled(false);
+		Grid1.setBorderPainted(false);
 		Grid2.setOpaque(false);
 		Grid2.setContentAreaFilled(false);
+		Grid2.setBorderPainted(false);
 		
 		SelectionConfirm.setOpaque(false);
 		SelectionConfirm.setContentAreaFilled(false);
+		SelectionConfirm.setBorderPainted(false);
 		hostButton.setOpaque(false);
 		hostButton.setContentAreaFilled(false);
+		hostButton.setBorderPainted(false);
 		joinButton.setOpaque(false);
 		joinButton.setContentAreaFilled(false);
+		joinButton.setBorderPainted(false);
 		
 		SendMessageButton.setOpaque(false);
 		SendMessageButton.setContentAreaFilled(false);
+		SendMessageButton.setBorderPainted(false);
 		
 		returnButton.setOpaque(false);
 		returnButton.setContentAreaFilled(false);
+		returnButton.setBorderPainted(false);
 		
 		CellA1.addActionListener(this);
 		CellA2.addActionListener(this);
