@@ -102,6 +102,7 @@ public class UI implements ActionListener{
 	int intMessageType = 0;
 	int intCountRow = 0;
 	int intCountCol = 0;
+	int intSparkles = 0;
 	
 	// strings
 	String strGridSelection;
@@ -339,10 +340,7 @@ public class UI implements ActionListener{
 
 		}else if(evt.getSource() == joinButton){
 			blnHost = false;
-			
-			if(blnConnected == true){
-				ssm.disconnect();
-			}
+			ssm.disconnect();
 			
 			String strIPJoin = null;
 			blnConnected = false;
