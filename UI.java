@@ -340,7 +340,9 @@ public class UI implements ActionListener{
 
 		}else if(evt.getSource() == joinButton){
 			blnHost = false;
-			ssm.disconnect();
+			if(blnConnected == true){
+				ssm.disconnect();
+			}
 			
 			String strIPJoin = null;
 			blnConnected = false;
