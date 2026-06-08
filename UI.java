@@ -1,3 +1,8 @@
+/**
+ * The main User Interface for Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 10.5
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -6,7 +11,6 @@ import java.awt.image.*;
 import javax.imageio.*;
 import java.awt.Font;
 import java.awt.FontMetrics;
-
 
 public class UI implements ActionListener{
 	// Properties
@@ -92,8 +96,10 @@ public class UI implements ActionListener{
 	int intCellMarginY=148;
 	int intGrid = 0;
 	// opponent's selected character; player must guess
+	/** Coordinates for tracking the row and column of the targeted character*/
 	int[] intOppAns = new int[2];
 	// player's selected character; opponent must guess
+	/** Coordinates for tracking the row and column of your character*/
 	int[] intPlaAns = new int[2];
 	// player's guess
 	int[] intPlaGuess = new int[2];
@@ -111,17 +117,35 @@ public class UI implements ActionListener{
 	String strUmaName;
 	
 	// booleans
+	
+	/** Tracks whether the actual playing is active*/
 	boolean Gameplay = false;
+	
+	/** Tracks if the client and host are on the server*/
 	boolean blnConnected = false;
+	
+	/** Tracks if the opponent has selected their character*/
 	boolean blnOppready = false;
+	
+	/** Tracks if the player has selected their character*/
 	boolean blnPlayready = false;
+	
+	/** Tracks which player can ask questions*/
 	boolean blnAsking;
-	boolean blnHost = false;
+	
+	/** Tracks if the user is ready to guess*/
 	boolean blnGuessing = false;
+	
+	/** Tracks who the host is*/
+	boolean blnHost = false;
 
 	// timer
 	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
 	
+	/** 
+	 * Handles UI events such as the Timer, Buttons, or Network Communication
+	 * * @param evt ActionEvent sent by the component
+	 */
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
 			if(blnPlayready == true && blnOppready == true){
@@ -914,6 +938,9 @@ public class UI implements ActionListener{
 	}
 	
 	// game resetting
+	/**
+	 * Resets background parameters to the initial startup parameters
+	 */
 	public void gamereset(){
 		RegularChat.setText("chat will begin below.");
 		GuessingChat.setText("questions will begin below.");
@@ -945,6 +972,10 @@ public class UI implements ActionListener{
 	}
 	
 	// button enabling
+	/**
+	 * Toggles the clickability of the 4 main guessing responses
+	 * * @param blnEnabled True to make buttons clickable; False to make them unclickable
+	 */
 	public void enableAnswerButtons(boolean blnEnabled){
 		yesButton.setEnabled(blnEnabled);
 		noButton.setEnabled(blnEnabled);
@@ -953,6 +984,9 @@ public class UI implements ActionListener{
 	}
 	
 	// switching to player turn (on player's end)
+	/**
+	 * Switches local UI turn changes
+	 */
 	public void playerturn(){
 		enableAnswerButtons(false);
 		blnAsking = true;
