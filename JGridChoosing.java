@@ -1,3 +1,8 @@
+/**
+ * The JPanel for the Grid Choosing Screen of Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 2.50
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
@@ -8,6 +13,7 @@ public class JGridChoosing extends JPanel{
 	//Propeties
 	
 	//Methods
+	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(DatabaseAccess.imageloading("gridscreen"),0,0,null);

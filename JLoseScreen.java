@@ -1,3 +1,8 @@
+/**
+ * The JPanel for the Lose Screen of Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 2.50
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
@@ -9,6 +14,7 @@ public class JLoseScreen extends JPanel{
 	String strUmaName = "daitakuhelios";
 	
 	//Methods
+	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(DatabaseAccess.imageloading("losescreen"),0,0,null);

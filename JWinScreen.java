@@ -1,3 +1,8 @@
+/**
+ * The JPanel for the Win Screen of Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 1.1
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
@@ -9,6 +14,7 @@ public class JWinScreen extends JPanel{
 	String strUmaName = "daitakuhelios";
 	
 	//Methods
+	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(DatabaseAccess.imageloading("winscreen"),0,0,null);
