@@ -1,8 +1,3 @@
-/**
- * The main User Interface for Guess Who
- * * @author Kristen, Marcus, & Nicole
- * @version 10.5
- */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -12,6 +7,7 @@ import javax.imageio.*;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
+/** The main User Interface for Guess Who */
 public class UI implements ActionListener{
 	// Properties
 	// JFrame
@@ -116,25 +112,25 @@ public class UI implements ActionListener{
 	
 	// booleans
 	
-	/** Tracks whether the actual playing is active*/
+	/** Tracks whether the actual playing is active */
 	boolean Gameplay = false;
 	
-	/** Tracks if the client and host are on the server*/
+	/** Tracks if the client and host are on the server */
 	boolean blnConnected = false;
 	
-	/** Tracks if the opponent has selected their character*/
+	/** Tracks if the opponent has selected their character */
 	boolean blnOppready = false;
 	
-	/** Tracks if the player has selected their character*/
+	/** Tracks if the player has selected their character */
 	boolean blnPlayready = false;
 	
-	/** Tracks which player can ask questions*/
+	/** Tracks which player can ask questions */
 	boolean blnAsking;
 	
-	/** Tracks if the user is ready to guess*/
+	/** Tracks if the user is ready to guess */
 	boolean blnGuessing = false;
 	
-	/** Tracks who the host is*/
+	/** Tracks who the host is */
 	boolean blnHost = false;
 
 	// timer
@@ -142,10 +138,7 @@ public class UI implements ActionListener{
 	javax.swing.Timer LoadingTimer = new javax.swing.Timer(1000/60,this);
 	double dblangle = (Math.PI)/180;
 	
-	/** 
-	 * Handles UI events such as the Timer, Buttons, or Network Communication
-	 * * @param evt ActionEvent sent by the component
-	 */
+	/** Handles UI events such as the Timer, Buttons, or Network Communication */
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
 			if(blnPlayready == true && blnOppready == true){
@@ -938,9 +931,7 @@ public class UI implements ActionListener{
 	}
 	
 	// game resetting
-	/**
-	 * Resets background parameters to the initial startup parameters
-	 */
+	/** Resets background parameters to the initial startup parameters */
 	public void gamereset(){
 		RegularChat.setText("chat will begin below.");
 		GuessingChat.setText("questions will begin below.");
@@ -978,10 +969,7 @@ public class UI implements ActionListener{
 	}
 	
 	// button enabling
-	/**
-	 * Toggles the clickability of the 4 main guessing responses
-	 * * @param blnEnabled True to make buttons clickable; False to make them unclickable
-	 */
+	/** Toggles the clickability of the 4 main guessing responses */
 	public void enableAnswerButtons(boolean blnEnabled){
 		yesButton.setEnabled(blnEnabled);
 		noButton.setEnabled(blnEnabled);
@@ -990,9 +978,7 @@ public class UI implements ActionListener{
 	}
 	
 	// switching to player turn (on player's end)
-	/**
-	 * Switches local UI turn changes
-	 */
+	/** Switches local UI turn changes*/
 	public void playerturn(){
 		enableAnswerButtons(false);
 		blnAsking = true;
@@ -1001,7 +987,7 @@ public class UI implements ActionListener{
 		GuessInputBox.setEditable(true);
 	}
 	
-	
+	/** Constructor for the Guess Who UI */
 	// Constructor
 	public UI(){
 		// homePanel
@@ -1044,11 +1030,9 @@ public class UI implements ActionListener{
 		SelectedUmaPreview.setBounds(1080,375,103,155);
 		selectPanel.add(SelectedUmaPreview);
 		
-		
 		SelectionConfirm.setBounds(1078,556,130,62);
 		SelectionConfirm.addActionListener(this);
 		selectPanel.add(SelectionConfirm);
-			
 		
 		// gameplayPanel
 		gameplayPanel.setLayout(null);
@@ -1104,7 +1088,6 @@ public class UI implements ActionListener{
 		SendMessageButton.setBounds(1206,665,38,38);
 		gameplayPanel.add(SendMessageButton);
 		SendMessageButton.addActionListener(this);
-		
 		
 		guessButton.setBounds(564,65,240,61);
 		guessButton.addActionListener(this);
