@@ -1313,6 +1313,7 @@ public class UI implements ActionListener{
 	}  
 	
 	// Main Method
+	/** The main method for the Guess Who program */
 	public static void main(String[] args){
 		new UI();
 	}
