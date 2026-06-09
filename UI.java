@@ -72,13 +72,11 @@ public class UI implements ActionListener{
 	JButton returnButton = new JButton("");
 	
 	// JLabels, JTextFields, JTextAreas
-	JLabel testLabel = new JLabel("");
 	JLabel IPLabel = new JLabel("",SwingConstants.CENTER);
 	JLabel WaitingText = new JLabel("",SwingConstants.CENTER);
 	JLabel SelectedUmaPreview = new JLabel("");
 	JLabel wiloanswer = new JLabel("",SwingConstants.CENTER);
 	
-	JTextField testField = new JTextField();
 	JLabel Readyfield = new JLabel("0/2 players ready!", SwingConstants.CENTER);
 	JTextField ChatInputBox = new JTextField("");
 	JTextField GuessInputBox = new JTextField("");
@@ -366,7 +364,6 @@ public class UI implements ActionListener{
 			IPLabel.setText("IP: " +ssm.getMyAddress());
 			WaitingText.setText("waiting for opponent...");
 			
-			// Maybe print to screen or give random code for users to join
 			System.out.println("The host's IP is: " +ssm.getMyAddress());
 			
 			joinButton.setEnabled(false);
@@ -393,11 +390,9 @@ public class UI implements ActionListener{
 				if(blnConnected == false){
 					strIPJoin = null;
 					ssm.disconnect();
-					//System.out.println("Disconnected");
 					IPLabel.setText("IP not found; try again");
 					break;
 				}else{
-					//System.out.println("Connected");
 					IPLabel.setText("Connected!");
 					WaitingText.setText("waiting for host to select grid...");
 					LoadingTimer.start();
@@ -412,9 +407,6 @@ public class UI implements ActionListener{
 		}else if(evt.getSource() == returnButton){
 			theFrame.setContentPane(homePanel);
 			theFrame.pack();
-		}else if(evt.getSource() == testField){
-			ssm.sendText(testField.getText());
-			testField.setText("");
 		}else if(evt.getSource() == Grid1){
 			// choosing grid 1
 			selectPanel.strSelectedGrid = "grid1";
@@ -603,10 +595,6 @@ public class UI implements ActionListener{
 				gameplayPanel.umacol = 7;
 				
 			}
-		//	System.out.println(gameplayPanel.umarow+ " "+ gameplayPanel.umacol+" "+gameplayPanel.strGrid[gameplayPanel.umarow][gameplayPanel.umacol]);
-		//	SelectedUmaPreview.setIcon(new ImageIcon(DatabaseAccess.imageloading(gameplayPanel.strUma)));
-
-
 		
 		}else if(theFrame.getContentPane() == gameplayPanel){
 			if(evt.getSource() == CellA1){
@@ -981,6 +969,12 @@ public class UI implements ActionListener{
 		gameplayPanel.CellC6OPEN= true;
 		gameplayPanel.CellC7OPEN= true;
 		gameplayPanel.CellC8OPEN= true;
+		
+		IPLabel.setText("");
+		WaitingText.setText("");
+		Readyfield.setText("0/2 players ready!");
+		ChatInputBox.setText("");
+		GuessInputBox.setText("");
 	}
 	
 	// button enabling
@@ -1036,16 +1030,6 @@ public class UI implements ActionListener{
 		joinButton.setBounds(647, 462, 195, 75);
 		joinButton.addActionListener(this);
 		homePanel.add(joinButton);
-		
-		testField.setBounds(650, 300, 330, 100);
-		testField.addActionListener(this);
-		//homePanel.add(testField);
-		
-		testLabel.setBounds(650,500,330,100);
-		//homePanel.add(testLabel);
-		
-		//testScroll.setBounds(650, 500, 330, 100);
-		//homePanel.add(testScroll);
 		
 		IPLabel.setBounds(0,584,1280,50);
 		IPLabel.setForeground(new Color(80,73,255));
@@ -1145,7 +1129,6 @@ public class UI implements ActionListener{
 		
 		//Character Selection Panel
 		Readyfield.setBounds(0,637,1280,28);
-		//Readyfield.setEditable(false);
 		Readyfield.setFont(DatabaseAccess.fontloading("pixelmix.ttf",20));
 		Readyfield.setForeground(new Color(69,171,242));
 		selectPanel.add(Readyfield);
