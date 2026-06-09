@@ -1,3 +1,8 @@
+/**
+ * The JPanel for the Character Selection Screen of Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 2.50
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
@@ -15,6 +20,7 @@ public class JSelectionScreen extends JPanel{
 			String strGrid[][];
 	
 	//Methods
+	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(selectionbg,0,0,null);
@@ -51,8 +57,6 @@ public class JSelectionScreen extends JPanel{
 					g.drawImage(DatabaseAccess.imageloading(strCell), intGridcol*103+227, intGridrow*155+148,null);
 				}
 			}
-			//g.drawImage(DatabaseAccess.imageloading(strGrid[umarow][umacol]), 1080,300,null);
-		//	System.out.println(umarow + " " + umacol + " " + strGrid[umarow][umacol]);
 		}
 
 	}

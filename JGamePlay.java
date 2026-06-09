@@ -1,3 +1,8 @@
+/**
+ * The JPanel for the Gameplay Screen of Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 2.50
+ */
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
@@ -6,8 +11,6 @@ import java.awt.image.*;
 
 public class JGamePlay extends JPanel{
 	// properties
-	
-	//Umas
 	BufferedImage background = null;
 	boolean CellA1OPEN = true;
 	boolean CellA2OPEN = true;
@@ -42,13 +45,12 @@ public class JGamePlay extends JPanel{
 	String strSelectedGrid;
 	String strGrid[][];
 	String strUma = "no uma";
-	//Other Assets
-	
 	
 	BufferedReader gridchoice;
 	
 	
 	// methods
+	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		background = DatabaseAccess.imageloading("gameplayscreen");
@@ -87,16 +89,11 @@ public class JGamePlay extends JPanel{
 				}
 			}
 			g.drawImage(DatabaseAccess.imageloading(strGrid[umarow][umacol]), 376,29,null);
-			//strUma = strGrid[umarow][umacol];
 		}
-		
 	}
 	
 	// constructor
 	public JGamePlay(){
-		super();
-		
-		//riceshower = DatabaseAccess.imageloading("riceshower");
-		
+		super();		
 	}
 }
