@@ -141,6 +141,8 @@ public class UI implements ActionListener{
 
 	// timer
 	javax.swing.Timer Timer = new javax.swing.Timer(1000/60,this);
+	javax.swing.Timer LoadingTimer = new javax.swing.Timer(1000/60,this);
+	double dblangle = (Math.PI)/180;
 	
 	/** 
 	 * Handles UI events such as the Timer, Buttons, or Network Communication
@@ -347,6 +349,13 @@ public class UI implements ActionListener{
 				System.out.println("null pointer exception");
 			}
 			
+		}else if(evt.getSource() == LoadingTimer){
+			homePanel.blnconnected = true;
+			dblangle = dblangle + (Math.PI)/90;
+			homePanel.intx = (int)(Math.round(30*(Math.sin(dblangle + (Math.PI)/2))));
+			homePanel.inty = (int)(Math.round(30*(Math.sin(dblangle))));
+			homePanel.repaint();
+		
 		}else if(evt.getSource() == hostButton){
 			// hosting game
 			blnHost = true;
@@ -391,6 +400,7 @@ public class UI implements ActionListener{
 					//System.out.println("Connected");
 					IPLabel.setText("Connected!");
 					WaitingText.setText("waiting for host to select grid...");
+					LoadingTimer.start();
 					
 					
 				}
@@ -478,6 +488,8 @@ public class UI implements ActionListener{
 			
 		}else if(theFrame.getContentPane() == selectPanel){
 			// painting gameplay panel buttons
+			LoadingTimer.stop();
+			homePanel.blnconnected=false;
 			if(evt.getSource() == SelectionConfirm){
 				// confirming character selected
 				blnPlayready = true;
