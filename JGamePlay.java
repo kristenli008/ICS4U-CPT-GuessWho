@@ -90,9 +90,6 @@ public class JGamePlay extends JPanel{
 			//strUma = strGrid[umarow][umacol];
 		}
 		
-		//g.drawImage(DatabaseAccess.imageloading(yesbutton.PNG), 
-		
-		
 	}
 	
 	// constructor
