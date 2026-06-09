@@ -9,6 +9,7 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
+/**Constructor for JGameplay Panel*/
 public class JGamePlay extends JPanel{
 	// properties
 	BufferedImage background = null;
