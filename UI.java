@@ -1,3 +1,8 @@
+/**
+ * The main User Interface for Guess Who
+ * * @author Kristen, Marcus, & Nicole
+ * @version 10.8
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,7 +12,6 @@ import javax.imageio.*;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
-/** The main User Interface for Guess Who */
 public class UI implements ActionListener{
 	// Properties
 	// JFrame
