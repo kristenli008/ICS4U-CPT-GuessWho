@@ -26,10 +26,13 @@ public class DatabaseAccess{
 	
 	/**Method for loading fonts
 	 * Returns a Font object of the font name and size given*/
-	public static Font fontloading(String strFontname, int FontSize){    
+	public Font fontloading(String strFontname, int FontSize){    
 		Font theFont = null;
+		InputStream fontclass = null;
+		
+		fontclass = this.getClass().getResourceAsStream("Database/"+strFontname);
 		try{
-			theFont = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("Database/"+strFontname)); 
+			theFont = Font.createFont(Font.TRUETYPE_FONT, fontclass); 
 			return theFont.deriveFont(Font.PLAIN, FontSize);
 		}catch(Exception e){
 			System.out.println("Couldn't load font");
