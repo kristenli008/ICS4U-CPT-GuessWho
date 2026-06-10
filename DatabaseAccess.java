@@ -13,9 +13,12 @@ import java.awt.FontMetrics;
 public class DatabaseAccess{
 	/**Method for loading images
 	 * Returns a BufferedImage object of the image name given*/
-	public static BufferedImage imageloading(String strFilename){
+	public BufferedImage imageloading(String strFilename){
+		InputStream imageclass = null;
+		
+		imageclass = this.getClass().getResourceAsStream("Database/"+strFilename+".png");
 		try{
-			return ImageIO.read(new File("Database/"+strFilename+".png"));
+			return ImageIO.read(imageclass);
 		}catch(IOException e){
 			return null;
 		}
@@ -63,6 +66,8 @@ public class DatabaseAccess{
 		return theFile;
 	}
 	
-
-	
+	// constructor
+	public DatabaseAccess(){
+		super();
+	}
 }

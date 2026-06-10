@@ -9,11 +9,12 @@ public class JHomePanel extends JPanel{
 	int intx=(int)(Math.round(100*(Math.sin(0 + (Math.PI)/2))));
 	int inty=(int)(Math.round(100*(Math.sin(0))));
 	boolean blnconnected = false;
+	DatabaseAccess DA = new DatabaseAccess();
 	
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(DatabaseAccess.imageloading("homescreen"),0,0,null);
+		g.drawImage(DA.imageloading("homescreen"),0,0,null);
 		
 		if(blnconnected == true){
 			g.setColor(new Color(255,255,255));

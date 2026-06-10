@@ -17,8 +17,9 @@ public class JSelectionScreen extends JPanel{
 	
 	int umarow = 2;
 	int umacol = 3;
-			String strGrid[][];
-	
+	String strGrid[][];
+	DatabaseAccess DA = new DatabaseAccess();
+
 	//Methods
 	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
@@ -33,7 +34,7 @@ public class JSelectionScreen extends JPanel{
 
 		strGrid = new String[3][8];
 		
-		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
+		gridchoice = DA.fileloading(strSelectedGrid);
 
 		if(gridchoice != null){
 			for(intGridrow = 0; intGridrow<3; intGridrow++){
@@ -54,7 +55,7 @@ public class JSelectionScreen extends JPanel{
 			for(intGridrow = 0; intGridrow <3; intGridrow++){
 				for(intGridcol = 0; intGridcol <8; intGridcol++){
 					strCell = strGrid[intGridrow][intGridcol];
-					g.drawImage(DatabaseAccess.imageloading(strCell), intGridcol*103+227, intGridrow*155+148,null);
+					g.drawImage(DA.imageloading(strCell), intGridcol*103+227, intGridrow*155+148,null);
 				}
 			}
 		}
@@ -65,6 +66,6 @@ public class JSelectionScreen extends JPanel{
 	public JSelectionScreen(){
 		super();
 		
-		selectionbg = DatabaseAccess.imageloading("umaselectionscreen");
+		selectionbg = DA.imageloading("umaselectionscreen");
 	}
 }

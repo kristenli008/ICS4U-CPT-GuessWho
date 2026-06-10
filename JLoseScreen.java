@@ -9,7 +9,11 @@ import java.io.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
+
+
 public class JLoseScreen extends JPanel{
+	DatabaseAccess DA = new DatabaseAccess();
+	
 	//Properties
 	String strUmaName = "daitakuhelios";
 	
@@ -17,8 +21,8 @@ public class JLoseScreen extends JPanel{
 	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(DatabaseAccess.imageloading("losescreen"),0,0,null);
-		g.drawImage(DatabaseAccess.imageloading(strUmaName),589,252,null);
+		g.drawImage(DA.imageloading("losescreen"),0,0,null);
+		g.drawImage(DA.imageloading(strUmaName),589,252,null);
 	}
 	
 	//Constructor

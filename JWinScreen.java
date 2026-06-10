@@ -12,13 +12,14 @@ import java.awt.image.*;
 public class JWinScreen extends JPanel{
 	//Properties
 	String strUmaName = "daitakuhelios";
+	DatabaseAccess DA = new DatabaseAccess();
 	
 	//Methods
 	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(DatabaseAccess.imageloading("winscreen"),0,0,null);
-		g.drawImage(DatabaseAccess.imageloading(strUmaName),589,252,null);
+		g.drawImage(DA.imageloading("winscreen"),0,0,null);
+		g.drawImage(DA.imageloading(strUmaName),589,252,null);
 	}
 	
 	//Constructor

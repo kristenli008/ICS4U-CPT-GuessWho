@@ -49,12 +49,14 @@ public class JGamePlay extends JPanel{
 	
 	BufferedReader gridchoice;
 	
+	DatabaseAccess DA = new DatabaseAccess();
+	
 	
 	// methods
 	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		background = DatabaseAccess.imageloading("gameplayscreen");
+		background = DA.imageloading("gameplayscreen");
 		g.drawImage(background,0,0,null);
 		
 		String strLine;
@@ -64,7 +66,7 @@ public class JGamePlay extends JPanel{
 		int intGridcol;
 		
 		strGrid = new String[3][8];		
-		gridchoice = DatabaseAccess.fileloading(strSelectedGrid);
+		gridchoice = DA.fileloading(strSelectedGrid);
 	
 		if(gridchoice != null){
 			
@@ -86,10 +88,10 @@ public class JGamePlay extends JPanel{
 			for(intGridrow = 0; intGridrow <3; intGridrow++){
 				for(intGridcol = 0; intGridcol <8; intGridcol++){
 					strCell = strGrid[intGridrow][intGridcol];
-					g.drawImage(DatabaseAccess.imageloading(strCell), intGridcol*103+45, intGridrow*155+205,null);
+					g.drawImage(DA.imageloading(strCell), intGridcol*103+45, intGridrow*155+205,null);
 				}
 			}
-			g.drawImage(DatabaseAccess.imageloading(strGrid[umarow][umacol]), 376,29,null);
+			g.drawImage(DA.imageloading(strGrid[umarow][umacol]), 376,29,null);
 		}
 	}
 	

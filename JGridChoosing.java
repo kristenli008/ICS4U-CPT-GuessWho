@@ -11,12 +11,13 @@ import java.awt.image.*;
 
 public class JGridChoosing extends JPanel{
 	//Propeties
+	DatabaseAccess DA = new DatabaseAccess();
 	
 	//Methods
 	/**Method for painting the JPanel*/
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(DatabaseAccess.imageloading("gridscreen"),0,0,null);
+		g.drawImage(DA.imageloading("gridscreen"),0,0,null);
 	}
 	
 	//Constructor

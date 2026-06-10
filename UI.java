@@ -142,6 +142,8 @@ public class UI implements ActionListener{
 	javax.swing.Timer LoadingTimer = new javax.swing.Timer(1000/60,this);
 	double dblangle = (Math.PI)/180;
 	
+	DatabaseAccess DA = new DatabaseAccess();
+	
 	/** Handles UI events such as the Timer, Buttons, or Network Communication */
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == Timer){
@@ -601,7 +603,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|0");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA1OPEN ==true){
-					CellA1.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA1.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA1OPEN = false;
 				}else{
 					CellA1.setIcon(null);
@@ -615,7 +617,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|1");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA2OPEN ==true){
-					CellA2.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA2.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA2OPEN = false;
 				}else{
 					CellA2.setIcon(null);
@@ -629,7 +631,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|2");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA3OPEN ==true){
-					CellA3.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA3.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA3OPEN = false;
 				}else{
 					CellA3.setIcon(null);
@@ -643,7 +645,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|3");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA4OPEN ==true){
-					CellA4.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA4.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA4OPEN = false;
 				}else{
 					CellA4.setIcon(null);
@@ -657,7 +659,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|4");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA5OPEN ==true){
-					CellA5.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA5.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA5OPEN = false;
 				}else{
 					CellA5.setIcon(null);
@@ -671,7 +673,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|5");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA6OPEN ==true){
-					CellA6.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA6.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA6OPEN = false;
 				}else{
 					CellA6.setIcon(null);
@@ -685,7 +687,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|6");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA7OPEN ==true){
-					CellA7.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA7.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA7OPEN = false;
 				}else{
 					CellA7.setIcon(null);
@@ -699,7 +701,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/0|7");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellA8OPEN ==true){
-					CellA8.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellA8.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellA8OPEN = false;
 				}else{
 					CellA8.setIcon(null);
@@ -713,7 +715,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|0");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB1OPEN ==true){
-					CellB1.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB1.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB1OPEN = false;
 				}else{
 					CellB1.setIcon(null);
@@ -727,7 +729,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|1");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB2OPEN ==true){
-					CellB2.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB2.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB2OPEN = false;
 				}else{
 					CellB2.setIcon(null);
@@ -741,7 +743,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|2");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB3OPEN ==true){
-					CellB3.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB3.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB3OPEN = false;
 				}else{
 					CellB3.setIcon(null);
@@ -755,7 +757,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|3");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB4OPEN ==true){
-					CellB4.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB4.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB4OPEN = false;
 				}else{
 					CellB4.setIcon(null);
@@ -769,7 +771,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|4");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB5OPEN ==true){
-					CellB5.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB5.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB5OPEN = false;
 				}else{
 					CellB5.setIcon(null);
@@ -783,7 +785,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|5");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB6OPEN ==true){
-					CellB6.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB6.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB6OPEN = false;
 				}else{
 					CellB6.setIcon(null);
@@ -797,7 +799,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|6");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB7OPEN ==true){
-					CellB7.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB7.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB7OPEN = false;
 				}else{
 					CellB7.setIcon(null);
@@ -811,7 +813,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/1|7");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellB8OPEN ==true){
-					CellB8.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellB8.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellB8OPEN = false;
 				}else{
 					CellB8.setIcon(null);
@@ -825,7 +827,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|0");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC1OPEN ==true){
-					CellC1.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC1.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC1OPEN = false;
 				}else{
 					CellC1.setIcon(null);
@@ -839,7 +841,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|1");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC2OPEN ==true){
-					CellC2.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC2.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC2OPEN = false;
 				}else{
 					CellC2.setIcon(null);
@@ -853,7 +855,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|2");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC3OPEN ==true){
-					CellC3.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC3.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC3OPEN = false;
 				}else{
 					CellC3.setIcon(null);
@@ -867,7 +869,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|3");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC4OPEN ==true){
-					CellC4.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC4.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC4OPEN = false;
 				}else{
 					CellC4.setIcon(null);
@@ -881,7 +883,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|4");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC5OPEN ==true){
-					CellC5.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC5.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC5OPEN = false;
 				}else{
 					CellC5.setIcon(null);
@@ -895,7 +897,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|5");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC6OPEN ==true){
-					CellC6.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC6.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC6OPEN = false;
 				}else{
 					CellC6.setIcon(null);
@@ -909,7 +911,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|6");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC7OPEN ==true){
-					CellC7.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC7.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC7OPEN = false;
 				}else{
 					CellC7.setIcon(null);
@@ -923,7 +925,7 @@ public class UI implements ActionListener{
 					ssm.sendText("gues/2|7");
 					blnGuessing = false;
 				}else if(gameplayPanel.CellC8OPEN ==true){
-					CellC8.setIcon(new ImageIcon(DatabaseAccess.imageloading("closedcell")));
+					CellC8.setIcon(new ImageIcon(DA.imageloading("closedcell")));
 					gameplayPanel.CellC8OPEN = false;
 				}else{
 					CellC8.setIcon(null);
@@ -1010,7 +1012,7 @@ public class UI implements ActionListener{
 		returnButton.addActionListener(this);
 		
 		wiloanswer.setBounds(0,431,1280,108);
-		wiloanswer.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
+		wiloanswer.setFont(DA.fontloading("pixelmix.ttf",30));
 		
 		// Can change coordinates later
 		hostButton.setBounds(438, 462, 195, 75);
@@ -1023,12 +1025,12 @@ public class UI implements ActionListener{
 		
 		IPLabel.setBounds(0,584,1280,50);
 		IPLabel.setForeground(new Color(80,73,255));
-		IPLabel.setFont(DatabaseAccess.fontloading("pixelmix.ttf",30));
+		IPLabel.setFont(DA.fontloading("pixelmix.ttf",30));
 		homePanel.add(IPLabel);
 		
 		WaitingText.setBounds(0,630,1280,50);
 		WaitingText.setForeground(new Color(69,171,242));
-		WaitingText.setFont(DatabaseAccess.fontloading("pixelmix.ttf",20));
+		WaitingText.setFont(DA.fontloading("pixelmix.ttf",20));
 		homePanel.add(WaitingText);
 		
 		SelectedUmaPreview.setBounds(1080,375,103,155);
@@ -1046,14 +1048,14 @@ public class UI implements ActionListener{
 		ChatScroll.setBounds(925,317,321,324);
 		ChatScroll.setBorder(null);
 		RegularChat.setEditable(false);
-		RegularChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		RegularChat.setFont(DA.fontloading("pixelmix.ttf",10));
 		RegularChat.setForeground(new Color(69,65,186));
 		gameplayPanel.add(ChatScroll);
 		
 		GuessingScroll.setBounds(925,31,324,150);
 		GuessingScroll.setBorder(null);
 		GuessingChat.setEditable(false);
-		GuessingChat.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		GuessingChat.setFont(DA.fontloading("pixelmix.ttf",10));
 		GuessingChat.setForeground(new Color(69,65,186));
 		gameplayPanel.add(GuessingScroll);
 		
@@ -1066,25 +1068,25 @@ public class UI implements ActionListener{
 		GuessInputBox.addActionListener(this);
 		
 		yesButton.setBounds(925,225,75,35);
-		yesButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		yesButton.setFont(DA.fontloading("pixelmix.ttf",10));
 		yesButton.addActionListener(this);
 		yesButton.setEnabled(false);
 		gameplayPanel.add(yesButton);
 		
 		noButton.setBounds(1005,225,75,35);
-		noButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		noButton.setFont(DA.fontloading("pixelmix.ttf",10));
 		noButton.addActionListener(this);
 		noButton.setEnabled(false);
 		gameplayPanel.add(noButton);
 		
 		idkButton.setBounds(1085,225,75,35);
-		idkButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		idkButton.setFont(DA.fontloading("pixelmix.ttf",10));
 		idkButton.addActionListener(this);
 		idkButton.setEnabled(false);
 		gameplayPanel.add(idkButton);
 		
 		NAButton.setBounds(1165,225,75,35);
-		NAButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",10));
+		NAButton.setFont(DA.fontloading("pixelmix.ttf",10));
 		NAButton.addActionListener(this);
 		NAButton.setEnabled(false);
 		gameplayPanel.add(NAButton);
@@ -1098,7 +1100,7 @@ public class UI implements ActionListener{
 		guessButton.setOpaque(false);
 		guessButton.setContentAreaFilled(false);
 		guessButton.setBorderPainted(false);
-		guessButton.setFont(DatabaseAccess.fontloading("pixelmix.ttf",18));
+		guessButton.setFont(DA.fontloading("pixelmix.ttf",18));
 		guessButton.setForeground(Color.WHITE);
 		gameplayPanel.add(guessButton);
 		
@@ -1116,7 +1118,7 @@ public class UI implements ActionListener{
 		
 		//Character Selection Panel
 		Readyfield.setBounds(0,637,1280,28);
-		Readyfield.setFont(DatabaseAccess.fontloading("pixelmix.ttf",20));
+		Readyfield.setFont(DA.fontloading("pixelmix.ttf",20));
 		Readyfield.setForeground(new Color(69,171,242));
 		selectPanel.add(Readyfield);
 		
