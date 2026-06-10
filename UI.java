@@ -63,7 +63,7 @@ public class UI implements ActionListener{
 	JButton yesButton = new JButton("YES");
 	JButton noButton = new JButton("NO");
 	JButton idkButton = new JButton("IDK");
-	JButton NAButton = new JButton("NOT A QUESTION");
+	JButton NAButton = new JButton("N/A");
 	
 	JButton SendMessageButton = new JButton("");
 	
